@@ -49,15 +49,30 @@
       <h2 class="text-2xl font-semibold text-gray-800 mb-4">Photo Gallery</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <img src="https://images.unsplash.com/photo-1594044083359-4fadc72a6e15?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Vineyards at Castello di Fonterutoli" class="w-full h-48 object-cover rounded-lg shadow-md">
+          <img 
+            src="https://images.pexels.com/photos/1269968/pexels-photo-1269968.jpeg?auto=compress&cs=tinysrgb&w=800" 
+            alt="Vineyards at Castello di Fonterutoli" 
+            class="w-full h-48 object-cover rounded-lg shadow-md"
+            onerror="this.src='https://via.placeholder.com/800x600?text=Vineyard+Image+Failed'"
+          >
           <p class="text-sm text-gray-600 mt-2 text-center">Vineyards at Castello di Fonterutoli</p>
         </div>
         <div>
-          <img src="https://images.unsplash.com/photo-1531824218564-5c9fd3d9e4f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chianti’s rolling hills" class="w-full h-48 object-cover rounded-lg shadow-md">
+          <img 
+            src="https://images.pexels.com/photos/747418/pexels-photo-747418.jpeg?auto=compress&cs=tinysrgb&w=800" 
+            alt="Chianti’s rolling hills" 
+            class="w-full h-48 object-cover rounded-lg shadow-md"
+            onerror="this.src='https://via.placeholder.com/800x600?text=Hills+Image+Failed'"
+          >
           <p class="text-sm text-gray-600 mt-2 text-center">Chianti’s rolling hills</p>
         </div>
         <div>
-          <img src="https://images.unsplash.com/photo-1589877836769-a83b6b2b6e66?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Radda in Chianti village" class="w-full h-48 object-cover rounded-lg shadow-md">
+          <img 
+            src="https://images.pexels.com/photos/20832069/pexels-photo-20832069.jpeg?auto=compress&cs=tinysrgb&w=800" 
+            alt="Radda in Chianti village" 
+            class="w-full h-48 object-cover rounded-lg shadow-md"
+            onerror="this.src='https://via.placeholder.com/800x600?text=Village+Image+Failed'"
+          >
           <p class="text-sm text-gray-600 mt-2 text-center">Radda in Chianti village</p>
         </div>
       </div>
@@ -136,7 +151,7 @@
         }
       });
 
-      // Fallback for debugging
+      // Log for debugging
       console.log('App loaded successfully');
     });
   </script>
