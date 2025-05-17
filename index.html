@@ -6,121 +6,360 @@
   <title>Tuscany Wine Day Trip</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Ensure images are responsive */
     img {
       max-width: 100%;
       height: auto;
     }
-    /* Fallback for JavaScript disabled */
     .no-js .js-required {
       display: none;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .sub-tab-content {
+      display: none;
+    }
+    .sub-tab-content.active {
+      display: block;
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0.75rem;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #3b82f6;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 0.5rem;
+      top: 0.25rem;
+      width: 16px;
+      height: 16px;
+      background: #3b82f6;
+      border-radius: 50%;
     }
   </style>
 </head>
 <body class="bg-gray-100 font-sans">
   <div class="max-w-4xl mx-auto p-4">
-    <!-- Header -->
-    <header class="text-center mb-8">
-      <h1 class="text-3xl font-bold text-gray-800">Chianti Classico Wine Tour from Il Cortile Pratolino</h1>
-      <p class="text-gray-600 mt-2">A Wine Adventure from Il Cortile Pratolino</p>
-    </header>
+    <!-- Tabs -->
+    <div class="flex border-b border-gray-300 mb-4">
+      <button id="trip-tab" class="flex-1 py-2 px-4 text-gray-700 font-semibold border-b-2 border-transparent hover:border-blue-500 focus:outline-none tab-button active">Trip Details</button>
+      <button id="map-tab" class="flex-1 py-2 px-4 text-gray-700 font-semibold border-b-2 border-transparent hover:border-blue-500 focus:outline-none tab-button">Map</button>
+      <button id="messenger-tab" class="flex-1 py-2 px-4 text-gray-700 font-semibold border-b-2 border-transparent hover:border-blue-500 focus:outline-none tab-button">Messenger</button>
+    </div>
 
-    <!-- Trip Overview -->
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Trip Overview</h2>
-      <p class="text-gray-700 leading-relaxed">
-        Enjoy a delightful day trip to the Chianti region, just 45 minutes from Il Cortile Pratolino. Visit Castello di Fonterutoli, a historic winery owned by the Mazzei family since 1435, famous for its Chianti Classico wines. Take a guided vineyard tour, learn about winemaking, and enjoy a tasting of premium wines paired with local cheeses and olive oil. The trip includes a scenic drive through Chianti’s hills and a stop in Radda in Chianti for lunch at a traditional trattoria, featuring dishes like panzanella and bistecca alla fiorentina.
-      </p>
-    </section>
-
-    <!-- Highlights -->
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Highlights</h2>
-      <ul class="list-disc list-inside text-gray-700">
-        <li>Guided tour and wine tasting at Castello di Fonterutoli</li>
-        <li>Scenic drive through Chianti’s vineyards and olive groves</li>
-        <li>Lunch at a family-run trattoria in Radda in Chianti</li>
-        <li>Explore the medieval village of Radda</li>
-      </ul>
-    </section>
-
-    <!-- Photo Gallery -->
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Photo Gallery</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <img 
-            src="https://images.pexels.com/photos/1269968/pexels-photo-1269968.jpeg?auto=compress&cs=tinysrgb&w=800" 
-            alt="Vineyards at Castello di Fonterutoli" 
-            class="w-full h-48 object-cover rounded-lg shadow-md"
-            onerror="this.src='https://via.placeholder.com/800x600?text=Vineyard+Image+Failed'"
-          >
-          <p class="text-sm text-gray-600 mt-2 text-center">Vineyards at Castello di Fonterutoli</p>
-        </div>
-        <div>
-          <img 
-            src="https://images.pexels.com/photos/747418/pexels-photo-747418.jpeg?auto=compress&cs=tinysrgb&w=800" 
-            alt="Chianti’s rolling hills" 
-            class="w-full h-48 object-cover rounded-lg shadow-md"
-            onerror="this.src='https://via.placeholder.com/800x600?text=Hills+Image+Failed'"
-          >
-          <p class="text-sm text-gray-600 mt-2 text-center">Chianti’s rolling hills</p>
-        </div>
-        <div>
-          <img 
-            src="https://images.pexels.com/photos/20832069/pexels-photo-20832069.jpeg?auto=compress&cs=tinysrgb&w=800" 
-            alt="Radda in Chianti village" 
-            class="w-full h-48 object-cover rounded-lg shadow-md"
-            onerror="this.src='https://via.placeholder.com/800x600?text=Village+Image+Failed'"
-          >
-          <p class="text-sm text-gray-600 mt-2 text-center">Radda in Chianti village</p>
-        </div>
+    <!-- Trip Details Tab -->
+    <div id="trip-content" class="tab-content active">
+      <!-- Sub-Tabs -->
+      <div class="flex mb-4">
+        <button id="wine-tour-sub-tab" class="flex-1 py-2 px-4 bg-blue-100 text-blue-700 font-medium rounded-t-lg sub-tab-button active">Wine Tour</button>
+        <button id="day-trip-sub-tab" class="flex-1 py-2 px-4 bg-gray-200 text-gray-700 font-medium rounded-t-lg sub-tab-button">Day Trip Itinerary</button>
       </div>
-    </section>
 
-    <!-- Attendance Form -->
-    <section class="mb-8">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendance</h2>
-      <div class="bg-white p-6 rounded-lg shadow-md">
-        <div class="mb-4">
-          <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
-          <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
-        </div>
-        <div class="mb-4">
-          <p class="text-gray-700 font-medium mb-2">Will you attend?</p>
-          <div class="flex space-x-4">
-            <label class="flex items-center">
-              <input type="radio" name="attending" value="yes" class="mr-2">
-              Yes
-            </label>
-            <label class="flex items-center">
-              <input type="radio" name="attending" value="no" class="mr-2">
-              No
-            </label>
+      <!-- Wine Tour Sub-Tab -->
+      <div id="wine-tour-content" class="sub-tab-content active">
+        <header class="text-center mb-8">
+          <h1 class="text-3xl font-bold text-gray-800">Chianti Classico Wine Tour from Il Cortile Pratolino</h1>
+          <p class="text-gray-600 mt-2">A Wine Adventure from Il Cortile Pratolino</p>
+        </header>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Trip Overview</h2>
+          <p class="text-gray-700 leading-relaxed">
+            Enjoy a delightful day trip to the Chianti region, just 45 minutes from Il Cortile Pratolino. Visit Castello di Fonterutoli, a historic winery owned by the Mazzei family since 1435, famous for its Chianti Classico wines. Take a guided vineyard tour, learn about winemaking, and enjoy a tasting of premium wines paired with local cheeses and olive oil. The trip includes a scenic drive through Chianti’s hills and a stop in Radda in Chianti for lunch at a traditional trattoria, featuring dishes like panzanella and bistecca alla fiorentina.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Highlights</h2>
+          <ul class="list-disc list-inside text-gray-700">
+            <li>Guided tour and wine tasting at Castello di Fonterutoli</li>
+            <li>Scenic drive through Chianti’s vineyards and olive groves</li>
+            <li>Lunch at a family-run trattoria in Radda in Chianti</li>
+            <li>Explore the medieval village of Radda</li>
+          </ul>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Photo Gallery</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/1269968/pexels-photo-1269968.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Vineyards at Castello di Fonterutoli" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Vineyard+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Vineyards at Castello di Fonterutoli</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/747418/pexels-photo-747418.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Chianti’s rolling hills" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Hills+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Chianti’s rolling hills</p>
+            </div>
+            <div>
+              <img 
+                src="httpsgpt://images.pexels.com/photos/20832069/pexels-photo-20832069.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Radda in Chianti village" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Village+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Radda in Chianti village</p>
+            </div>
           </div>
-        </div>
-        <button id="submit-btn" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Submit</button>
-      </div>
-    </section>
+        </section>
 
-    <!-- Attendees List -->
-    <section>
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendees</h2>
-      <ul id="attendees-list" class="bg-white p-4 rounded-lg shadow-md">
-        <li class="text-gray-600">No attendees yet.</li>
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendance</h2>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="mb-4">
+              <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+              <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
+            </div>
+            <div class="mb-4">
+              <p class="text-gray-700 font-medium mb-2">Will you attend?</p>
+              <div class="flex space-x-4">
+                <label class="flex items-center">
+                  <input type="radio" name="attending" value="yes" class="mr-2">
+                  Yes
+                </label>
+                <label class="flex items-center">
+                  <input type="radio" name="attending" value="no" class="mr-2">
+                  No
+                </label>
+              </div>
+            </div>
+            <button id="submit-btn" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Submit</button>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendees</h2>
+          <ul id="attendees-list" class="bg-white p-4 rounded-lg shadow-md">
+            <li class="text-gray-600">No attendees yet.</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- Day Trip Itinerary Sub-Tab -->
+      <div id="day-trip-content" class="sub-tab-content">
+        <header class="text-center mb-8">
+          <h1 class="text-3xl font-bold text-gray-800">One-Day Chianti Road Trip Itinerary</h1>
+          <p class="text-gray-600 mt-2">From Il Cortile Pratolino to Chianti’s Heart</p>
+        </header>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Itinerary Overview</h2>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <p class="text-gray-700"><strong>Start:</strong> Il Cortile Pratolino, near Montegonzi (9:30 AM)</p>
+            <p class="text-gray-700"><strong>Destinations:</strong> Greve in Chianti, Montefioralle, Lamole, Panzano, Castellina in Chianti, Montegonzi</p>
+            <p class="text-gray-700"><strong>End:</strong> Montegonzi (by 5:00 PM)</p>
+            <p class="text-gray-700"><strong>Total Driving Distance:</strong> ~60 km</p>
+            <p class="text-gray-700"><strong>Total Driving Time:</strong> ~1 hour 45 minutes</p>
+            <p class="text-gray-700"><strong>Total Time:</strong> 7 hours 30 minutes (including activities and lunch)</p>
+          </div>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Detailed Itinerary</h2>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-lg font-semibold text-gray-800">9:30 AM – Depart to Greve in Chianti</h3>
+              <p class="text-gray-700"><strong>Drive:</strong> 15 km, ~20 min via SR222. From Il Cortile Pratolino, take SP94 to SR222, park near Piazza Matteotti.</p>
+              <p class="text-gray-700"><strong>Scenic:</strong> Vineyards, cypress trees. <a href="https://www.to-tuscany.com/travel-guide/towns-villages/greve-in-chianti/" class="text-blue-500">More info</a></p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-lg font-semibold text-gray-800">9:50 AM – 10:50 AM: Greve in Chianti (1 hr)</h3>
+              <p class="text-gray-700">Stroll Piazza Matteotti, visit Antica Macelleria Falorni for tastings, try Chianti Classico at Enoteca Falorni. <a href="https://www.viaggiascrittori.com/visit-chianti-in-7-days-itinerary-and-tips/?lang=en" class="text-blue-500">Details</a></p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-lg font-semibold text-gray-800">10:50 AM – Drive to Montefioralle</h3>
+              <p class="text-gray-700"><strong>Drive:</strong> 2 km, ~5 min via Via Roma. Park at Piazza Santo Stefano. <a href="https://lovefromtuscany.com/chianti-road-trip/" class="text-blue-500">Route</a></p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-lg font-semibold text-gray-800">11:00 AM – 11:45 AM: Montefioralle (45 min)</h3>
+              <p class="text-gray-700">Walk medieval streets, see Church of Santo Stefano, taste wine at Montefioralle Winery. <a href="https://thetuscanmom.com/montefioralle-italy/" class="text-blue-500">Info</a></p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-lg font-semibold text-gray-800">11:45 AM – Drive to Lamole</h3>
+              <p class="text-gray-700"><strong>Drive:</strong> 8 km, ~15 min via Via Lamole. Park near Ristoro di Lamole. <a href="https://itinerariesnow.com/2012/09/18/chianti-classico-itinerary-unforgettable-via-chiantigiana/" class="text-blue-500">Route</a></p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-lg font-semibold text-gray-800">12:15 PM – 1:45 PM: Lunch at Ristoro di Lamole (1 hr 30 min)</h3>
+              <p class="text-gray-700">Enjoy Tuscan dishes on the terrace. Reserve at <a href="http://www.ristorodilamole.it" class="text-blue-500">+39 055 854 7050</a>. <a href="https://www.tripadvisor.com/ShowTopic-g580240-i12748-k5013143-Travelling_from_Rome_to_Florence_advise_needed_please-Greve_in_Chianti_Tuscany.html" class="text-blue-500">Reviews</a></p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-lg font-semibold text-gray-800">1:45 PM – Drive to Panzano</h3>
+              <p class="text-gray-700"><strong>Drive:</strong> 6 km, ~10 min via SR222. Park near main square. <a href="https://www.visittuscany.com/en/itineraries/a-car-tour-along-the-chiantigiana-road/" class="text-blue-500">Route</a></p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-lg font-semibold text-gray-800">2:00 PM – 3:00 PM: Panzano (1 hr)</h3>
+              <p class="text-gray-700">Visit Antica Macelleria Cecchini, explore Panzano Alto, see Pieve di San Leolino. <a href="https://www.chianti.com/itineraries-in-chianti/one-day-in-chianti.html" class="text-blue-500">Details</a></p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-lg font-semibold text-gray-800">3:00 PM – Drive to Castellina in Chianti</h3>
+              <p class="text-gray-700"><strong>Drive:</strong> 15 km, ~20 min via SR222. Park near main square. <a href="https://www.chianti.com/itineraries-in-chianti/one-day-in-chianti.html" class="text-blue-500">Route</a></p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-lg font-semibold text-gray-800">3:20 PM – 4:20 PM: Castellina in Chianti (1 hr)</h3>
+              <p class="text-gray-700">Walk Via delle Volte, visit Rocca Fortress, grab gelato at Gelateria Castellina. <a href="https://www.italyweloveyou.com/chianti-italy-things-to-do/" class="text-blue-500">Info</a></p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-lg font-semibold text-gray-800">4:20 PM – Drive to Montegonzi</h3>
+              <p class="text-gray-700"><strong>Drive:</strong> 14 km, ~20 min via SR222 and SP99. <a href="https://www.visitchianti.net/ring-of-montefioralle-and-montegonzi/?lang=en" class="text-blue-500">Route</a></p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-lg font-semibold text-gray-800">4:40 PM – Arrive in Montegonzi (by 5:00 PM)</h3>
+              <p class="text-gray-700">Relax at Il Cortile Pratolino or take a short walk in Montegonzi. <a href="https://www.visitchianti.net/ring-of-montefioralle-and-montegonzi/?lang=en" class="text-blue-500">Details</a></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Additional Tips</h2>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <ul class="list-disc list-inside text-gray-700">
+              <li><strong>Driving:</strong> SR222 and side roads are curvy; use a compact car. <a href="https://www.chianti.com/moving-around-chianti/tips-getting-around-chianti.html" class="text-blue-500">Tips</a></li>
+              <li><strong>Parking:</strong> Use lots outside ZTL zones; Greve and Castellina have larger spaces. <a href="https://www.to-tuscany.com/travel-guide/towns-villages/greve-in-chianti/" class="text-blue-500">Parking</a></li>
+              <li><strong>What to Bring:</strong> Comfortable shoes, camera, cash for small shops/parking.</li>
+              <li><strong>Reservations:</strong> Book Ristoro di Lamole (<a href="http://www.ristorodilamole.it" class="text-blue-500">+39 055 854 7050</a>). Call Montefioralle Winery (+39 055 853 189). <a href="https://thetuscanmom.com/montefioralle-italy/" class="text-blue-500">Info</a></li>
+              <li><strong>Seasonal:</strong> May offers pleasant weather; check for festivals like I Vini del Castello. <a href="https://thetuscanmom.com/montefioralle-italy/" class="text-blue-500">Events</a></li>
+              <li><strong>Fuel:</strong> Gas stations at Coop in Greve. <a href="https://www.chianti.com/greve-in-chianti/what-to-see.html" class="text-blue-500">Details</a></li>
+            </ul>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Map Tab -->
+    <div id="map-content" class="tab-content">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Driving Directions from Florence to Il Cortile Pratolino</h2>
+      <p class="text-gray-700 mb-4">
+        Below is a map showing the driving route from Florence (Piazza della Signoria) to Il Cortile Pratolino, approximately 14 km (25 minutes) via SR65 and local roads.
+      </p>
+      <iframe 
+        class="w-full h-96 rounded-lg shadow-md" 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.843483974592!2d11.252497315509693!3d43.78035097911706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a56a680d2d6ad%3A0x93d57903d7db7b79!2sPiazza%20della%20Signoria%2C%2050122%20Firenze%20FI%2C%20Italy!5e0!3m2!1sen!2sus!4v1697584321098!5m2!1sen!2sus&destination=Il+Cortile+Pratolino%2C+Via+della+Lastruccia%2C+50036+Pratolino+FI%2C+Italy" 
+        allowfullscreen="" 
+        loading="lazy"
+      ></iframe>
+    </div>
+
+    <!-- Messenger Tab -->
+    <div id="messenger-content" class="tab-content">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Messenger</h2>
+      <div class="bg-white p-6 rounded-lg shadow-md mb-4">
+        <div class="mb-4">
+          <label for="message-name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+          <input type="text" id="message-name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
+        </div>
+        <div class="mb-4">
+          <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+          <textarea id="message" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your message" rows="4"></textarea>
+        </div>
+        <button id="message-submit" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Send</button>
+      </div>
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">Messages</h3>
+      <ul id="message-list" class="bg-white p-4 rounded-lg shadow-md">
+        <li class="text-gray-600">No messages yet.</li>
       </ul>
-    </section>
+    </div>
   </div>
 
   <script>
-    // JavaScript for attendance form
+    // Tab and Sub-Tab Switching
     document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab-button');
+      const tabContents = document.querySelectorAll('.tab-content');
+      const subTabs = document.querySelectorAll('.sub-tab-button');
+      const subTabContents = document.querySelectorAll('.sub-tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.classList.remove('active', 'border-blue-500');
+            t.classList.add('border-transparent');
+          });
+          tabContents.forEach(c => c.classList.remove('active'));
+
+          tab.classList.add('active', 'border-blue-500');
+          document.getElementById(`${tab.id.replace('-tab', '')}-content`).classList.add('active');
+
+          // Reset to Wine Tour sub-tab when switching to Trip Details
+          if (tab.id === 'trip-tab') {
+            subTabs.forEach(st => {
+              st.classList.remove('active', 'bg-blue-100', 'text-blue-700');
+              st.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            subTabContents.forEach(sc => sc.classList.remove('active'));
+            document.getElementById('wine-tour-sub-tab').classList.add('active', 'bg-blue-100', 'text-blue-700');
+            document.getElementById('wine-tour-content').classList.add('active');
+          }
+        });
+      });
+
+      subTabs.forEach(subTab => {
+        subTab.addEventListener('click', () => {
+          subTabs.forEach(st => {
+            st.classList.remove('active', 'bg-blue-100', 'text-blue-700');
+            st.classList.add('bg-gray-200', 'text-gray-700');
+          });
+          subTabContents.forEach(sc => sc.classList.remove('active'));
+
+          subTab.classList.add('active', 'bg-blue-100', 'text-blue-700');
+          document.getElementById(`${subTab.id.replace('-sub-tab', '')}-content`).classList.add('active');
+        });
+      });
+
+      // Attendance Form
       const nameInput = document.getElementById('name');
       const radioButtons = document.querySelectorAll('input[name="attending"]');
       const submitBtn = document.getElementById('submit-btn');
       const attendeesList = document.getElementById('attendees-list');
 
-      // Enable/disable submit button
+      const loadAttendees = () => {
+        const attendees = JSON.parse(localStorage.getItem('attendees') || '[]');
+        if (attendees.length > 0) {
+          attendeesList.innerHTML = '';
+          attendees.forEach(attendee => {
+            const li = document.createElement('li');
+            li.className = 'text-gray-700';
+            li.textContent = `${attendee.name}: ${attendee.attending === 'yes' ? 'Attending' : 'Not Attending'}`;
+            attendeesList.appendChild(li);
+          });
+        } else {
+          attendeesList.innerHTML = '<li class="text-gray-600">No attendees yet.</li>';
+        }
+      };
+      loadAttendees();
+
       function updateSubmitButton() {
         const name = nameInput.value.trim();
         const attending = Array.from(radioButtons).some(radio => radio.checked);
@@ -130,28 +369,65 @@
       nameInput.addEventListener('input', updateSubmitButton);
       radioButtons.forEach(radio => radio.addEventListener('change', updateSubmitButton));
 
-      // Handle form submission
       submitBtn.addEventListener('click', () => {
         const name = nameInput.value.trim();
         const attending = document.querySelector('input[name="attending"]:checked').value;
         if (name && attending) {
-          // Clear "No attendees" message
-          if (attendeesList.children[0].textContent === 'No attendees yet.') {
-            attendeesList.innerHTML = '';
-          }
-          // Add new attendee
-          const li = document.createElement('li');
-          li.className = 'text-gray-700';
-          li.textContent = `${name}: ${attending === 'yes' ? 'Attending' : 'Not Attending'}`;
-          attendeesList.appendChild(li);
-          // Reset form
+          const attendees = JSON.parse(localStorage.getItem('attendees') || '[]');
+          attendees.push({ name, attending });
+          localStorage.setItem('attendees', JSON.stringify(attendees));
+          loadAttendees();
           nameInput.value = '';
           radioButtons.forEach(radio => radio.checked = false);
           submitBtn.disabled = true;
         }
       });
 
-      // Log for debugging
+      // Messenger Form
+      const messageNameInput = document.getElementById('message-name');
+      const messageInput = document.getElementById('message');
+      const messageSubmitBtn = document.getElementById('message-submit');
+      const messageList = document.getElementById('message-list');
+
+      const loadMessages = () => {
+        const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+        if (messages.length > 0) {
+          messageList.innerHTML = '';
+          messages.forEach(msg => {
+            const li = document.createElement('li');
+            li.className = 'text-gray-700 mb-2';
+            li.textContent = `${msg.name} (${new Date(msg.timestamp).toLocaleString()}): ${msg.text}`;
+            messageList.appendChild(li);
+          });
+        } else {
+          messageList.innerHTML = '<li class="text-gray-600">No messages yet.</li>';
+        }
+      };
+      loadMessages();
+
+      function updateMessageSubmitButton() {
+        const name = messageNameInput.value.trim();
+        const message = messageInput.value.trim();
+        messageSubmitBtn.disabled = !name || !message;
+      }
+
+      messageNameInput.addEventListener('input', updateMessageSubmitButton);
+      messageInput.addEventListener('input', updateMessageSubmitButton);
+
+      messageSubmitBtn.addEventListener('click', () => {
+        const name = messageNameInput.value.trim();
+        const text = messageInput.value.trim();
+        if (name && text) {
+          const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+          messages.push({ name, text, timestamp: new Date().toISOString() });
+          localStorage.setItem('messages', JSON.stringify(messages));
+          loadMessages();
+          messageNameInput.value = '';
+          messageInput.value = '';
+          messageSubmitBtn.disabled = true;
+        }
+      });
+
       console.log('App loaded successfully');
     });
   </script>
