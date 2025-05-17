@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuscany Wine Day Trip</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Ensure images are responsive */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    /* Fallback for JavaScript disabled */
+    .no-js .js-required {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div class="max-w-4xl mx-auto p-4">
+    <!-- Header -->
+    <header class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-800">Chianti Classico Wine Tour from Il Cortile Pratolino</h1>
+      <p class="text-gray-600 mt-2">A Wine Adventure from Il Cortile Pratolino</p>
+    </header>
+
+    <!-- Trip Overview -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Trip Overview</h2>
+      <p class="text-gray-700 leading-relaxed">
+        Enjoy a delightful day trip to the Chianti region, just 45 minutes from Il Cortile Pratolino. Visit Castello di Fonterutoli, a historic winery owned by the Mazzei family since 1435, famous for its Chianti Classico wines. Take a guided vineyard tour, learn about winemaking, and enjoy a tasting of premium wines paired with local cheeses and olive oil. The trip includes a scenic drive through Chianti’s hills and a stop in Radda in Chianti for lunch at a traditional trattoria, featuring dishes like panzanella and bistecca alla fiorentina.
+      </p>
+    </section>
+
+    <!-- Highlights -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Highlights</h2>
+      <ul class="list-disc list-inside text-gray-700">
+        <li>Guided tour and wine tasting at Castello di Fonterutoli</li>
+        <li>Scenic drive through Chianti’s vineyards and olive groves</li>
+        <li>Lunch at a family-run trattoria in Radda in Chianti</li>
+        <li>Explore the medieval village of Radda</li>
+      </ul>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Photo Gallery</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <img 
+            src="https://images.pexels.com/photos/1269968/pexels-photo-1269968.jpeg?auto=compress&cs=tinysrgb&w=800" 
+            alt="Vineyards at Castello di Fonterutoli" 
+            class="w-full h-48 object-cover rounded-lg shadow-md"
+            onerror="this.src='https://via.placeholder.com/800x600?text=Vineyard+Image+Failed'"
+          >
+          <p class="text-sm text-gray-600 mt-2 text-center">Vineyards at Castello di Fonterutoli</p>
+        </div>
+        <div>
+          <img 
+            src="https://images.pexels.com/photos/747418/pexels-photo-747418.jpeg?auto=compress&cs=tinysrgb&w=800" 
+            alt="Chianti’s rolling hills" 
+            class="w-full h-48 object-cover rounded-lg shadow-md"
+            onerror="this.src='https://via.placeholder.com/800x600?text=Hills+Image+Failed'"
+          >
+          <p class="text-sm text-gray-600 mt-2 text-center">Chianti’s rolling hills</p>
+        </div>
+        <div>
+          <img 
+            src="https://images.pexels.com/photos/20832069/pexels-photo-20832069.jpeg?auto=compress&cs=tinysrgb&w=800" 
+            alt="Radda in Chianti village" 
+            class="w-full h-48 object-cover rounded-lg shadow-md"
+            onerror="this.src='https://via.placeholder.com/800x600?text=Village+Image+Failed'"
+          >
+          <p class="text-sm text-gray-600 mt-2 text-center">Radda in Chianti village</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Attendance Form -->
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendance</h2>
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="mb-4">
+          <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+          <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
+        </div>
+        <div class="mb-4">
+          <p class="text-gray-700 font-medium mb-2">Will you attend?</p>
+          <div class="flex space-x-4">
+            <label class="flex items-center">
+              <input type="radio" name="attending" value="yes" class="mr-2">
+              Yes
+            </label>
+            <label class="flex items-center">
+              <input type="radio" name="attending" value="no" class="mr-2">
+              No
+            </label>
+          </div>
+        </div>
+        <button id="submit-btn" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Submit</button>
+      </div>
+    </section>
+
+    <!-- Attendees List -->
+    <section>
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendees</h2>
+      <ul id="attendees-list" class="bg-white p-4 rounded-lg shadow-md">
+        <li class="text-gray-600">No attendees yet.</li>
+      </ul>
+    </section>
+  </div>
+
+  <script>
+    // JavaScript for attendance form
+    document.addEventListener('DOMContentLoaded', () => {
+      const nameInput = document.getElementById('name');
+      const radioButtons = document.querySelectorAll('input[name="attending"]');
+      const submitBtn = document.getElementById('submit-btn');
+      const attendeesList = document.getElementById('attendees-list');
+
+      // Enable/disable submit button
+      function updateSubmitButton() {
+        const name = nameInput.value.trim();
+        const attending = Array.from(radioButtons).some(radio => radio.checked);
+        submitBtn.disabled = !name || !attending;
+      }
+
+      nameInput.addEventListener('input', updateSubmitButton);
+      radioButtons.forEach(radio => radio.addEventListener('change', updateSubmitButton));
+
+      // Handle form submission
+      submitBtn.addEventListener('click', () => {
+        const name = nameInput.value.trim();
+        const attending = document.querySelector('input[name="attending"]:checked').value;
+        if (name && attending) {
+          // Clear "No attendees" message
+          if (attendeesList.children[0].textContent === 'No attendees yet.') {
+            attendeesList.innerHTML = '';
+          }
+          // Add new attendee
+          const li = document.createElement('li');
+          li.className = 'text-gray-700';
+          li.textContent = `${name}: ${attending === 'yes' ? 'Attending' : 'Not Attending'}`;
+          attendeesList.appendChild(li);
+          // Reset form
+          nameInput.value = '';
+          radioButtons.forEach(radio => radio.checked = false);
+          submitBtn.disabled = true;
+        }
+      });
+
+      // Log for debugging
+      console.log('App loaded successfully');
+    });
+  </script>
+</body>
+</html>
