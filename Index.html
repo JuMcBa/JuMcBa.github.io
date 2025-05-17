@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuscany Wine Day Trip</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7.25.6/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // Trip data
+    const tripDetails = {
+      title: "Chianti Classico Wine Tour from Il Cortile Pratolino",
+      description: "Enjoy a delightful day trip to the Chianti region, just 45 minutes from Il Cortile Pratolino. Visit Castello di Fonterutoli, a historic winery owned by the Mazzei family since 1435, famous for its Chianti Classico wines. Take a guided vineyard tour, learn about winemaking, and enjoy a tasting of premium wines paired with local cheeses and olive oil. The trip includes a scenic drive through Chianti’s hills and a stop in Radda in Chianti for lunch at a traditional trattoria, featuring dishes like panzanella and bistecca alla fiorentina.",
+      highlights: [
+        "Guided tour and wine tasting at Castello di Fonterutoli",
+        "Scenic drive through Chianti’s vineyards and olive groves",
+        "Lunch at a family-run trattoria in Radda in Chianti",
+        "Explore the medieval village of Radda"
+      ],
+      photos: [
+        "https://images.unsplash.com/photo-1594044083359-4fadc72a6e15?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1531824218564-5c9fd3d9e4f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1589877836769-a83b6b2b6e66?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      photoCaptions: [
+        "Vineyards at Castello di Fonterutoli",
+        "Chianti’s rolling hills",
+        "Radda in Chianti village"
+      ]
+    };
+
+    // Error Boundary Component
+    function ErrorBoundary({ children }) {
+      const [hasError, setHasError] = useState(false);
+
+      useEffect(() => {
+        window.onerror = () => setHasError(true);
+        return () => { window.onerror = null; };
+      }, []);
+
+      if (hasError) {
+        return (
+          <div className="p-4 text-center text-red-600">
+            <h2>Something went wrong.</h2>
+            <p>Please refresh the page or check your internet connection.</p>
+          </div>
+        );
+      }
+
+      return children;
+    }
+
+    // Main App Component
+    function App() {
+      const [name, setName] = useState("");
+      const [attending, setAttending] = useState(null);
+      const [attendees, setAttendees] = useState([]);
+      const [loading, setLoading] = useState(true);
+
+      useEffect(() => {
+        // Simulate loading to ensure React mounts
+        setTimeout(() => setLoading(false), 500);
+      }, []);
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (name.trim() && attending !== null) {
+          setAttendees([...attendees, { name, attending }]);
+          setName("");
+          setAttending(null);
+        }
+      };
+
+      if (loading) {
+        return (
+          <div className="flex items-center justify-center h-screen">
+            <p className="text-gray-600 text-lg">Loading...</p>
+          </div>
+        );
+      }
+
+      return (
+        <ErrorBoundary>
+          <div className="max-w-4xl mx-auto p-4">
+            <header className="text-center mb-8">
+              <h1 className="text-3xl font-bold text-gray-800">{tripDetails.title}</h1>
+              <p className="text-gray-600 mt-2">A Wine Adventure from Il Cortile Pratolino</p>
+            </header>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Trip Overview</h2>
+              <p className="text-gray-700 leading-relaxed">{tripDetails.description}</p>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Highlights</h2>
+              <ul className="list-disc list-inside text-gray-700">
+                {tripDetails.highlights.map((highlight, index) => (
+                  <li key={index}>{highlight}</li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Photo Gallery</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {tripDetails.photos.map((photo, index) => (
+                  <div key={index} className="relative">
+                    <img
+                      src={photo}
+                      alt={tripDetails.photoCaptions[index]}
+                      className="w-full h-48 object-cover rounded-lg shadow-md"
+                      onError={(e) => { e.target.src = 'https://via.placeholder.com/800x600?text=Image+Failed'; }}
+                    />
+                    <p className="text-sm text-gray-600 mt-2 text-center">{tripDetails.photoCaptions[index]}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Attendance</h2>
+              <div className="bg-white p-6 rounded-lg shadow-md">
+                <div className="mb-4">
+                  <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter your name"
+                  />
+                </div>
+                <div className="mb-4">
+                  <p className="text-gray-700 font-medium mb-2">Will you attend?</p>
+                  <div className="flex space-x-4">
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="attending"
+                        value="yes"
+                        checked={attending === true}
+                        onChange={() => setAttending(true)}
+                        className="mr-2"
+                      />
+                      Yes
+                    </label>
+                    <label className="flex items-center">
+                      <input
+                        type="radio"
+                        name="attending"
+                        value="no"
+                        checked={attending === false}
+                        onChange={() => setAttending(false)}
+                        className="mr-2"
+                      />
+                      No
+                    </label>
+                  </div>
+                </div>
+                <button
+                  onClick={handleSubmit}
+                  disabled={!name.trim() || attending === null}
+                  className="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                >
+                  Submit
+                </button>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold text-gray-800 mb-4">Attendees</h2>
+              {attendees.length > 0 ? (
+                <ul className="bg-white p-4 rounded-lg shadow-md">
+                  {attendees.map((attendee, index) => (
+                    <li key={index} className="text-gray-700">
+                      {attendee.name}: {attendee.attending ? "Attending" : "Not Attending"}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-gray-600">No attendees yet.</p>
+              )}
+            </section>
+          </div>
+        </ErrorBoundary>
+      );
+    }
+
+    // Render the app
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
