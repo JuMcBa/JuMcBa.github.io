@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tuscany Wine Day Trip</title>
+  <title>Tuscany Day Trip</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     img {
@@ -19,10 +19,10 @@
     .tab-content.active {
       display: block;
     }
-    .sub-tab-content {
+    .panel-content {
       display: none;
     }
-    .sub-tab-content.active {
+    .panel-content.active {
       display: block;
     }
     .timeline-item {
@@ -48,124 +48,78 @@
       background: #3b82f6;
       border-radius: 50%;
     }
+    .landing-bg {
+      background-image: url('https://images.pexels.com/photos/747418/pexels-photo-747418.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      /* Fallback base64 placeholder */
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAEhQGAdeS9bAAAAABJRU5ErkJggg==');
+    }
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: #1f2937;
+      padding: 1rem;
+      text-align: center;
+    }
+    .nav-bar select {
+      background-color: #3b82f6;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      outline: none;
+      width: 200px;
+    }
   </style>
 </head>
 <body class="bg-gray-100 font-sans">
-  <div class="max-w-4xl mx-auto p-4">
-    <!-- Tabs -->
-    <div class="flex border-b border-gray-300 mb-4">
-      <button id="trip-tab" class="flex-1 py-2 px-4 text-gray-700 font-semibold border-b-2 border-transparent hover:border-blue-500 focus:outline-none tab-button active">Trip Details</button>
-      <button id="map-tab" class="flex-1 py-2 px-4 text-gray-700 font-semibold border-b-2 border-transparent hover:border-blue-500 focus:outline-none tab-button">Map</button>
-      <button id="messenger-tab" class="flex-1 py-2 px-4 text-gray-700 font-semibold border-b-2 border-transparent hover:border-blue-500 focus:outline-none tab-button">Messenger</button>
+  <!-- Navigation Bar -->
+  <div class="nav-bar">
+    <select id="nav-dropdown">
+      <option value="landing">Home</option>
+      <option value="itineraries">Itineraries</option>
+      <option value="map">Map</option>
+      <option value="messenger">Messenger</option>
+    </select>
+  </div>
+
+  <!-- Landing Page -->
+  <div id="landing-page" class="tab-content active landing-bg">
+    <h1 class="text-4xl font-bold mb-4 text-center">Tuscany Day Trip Adventure</h1>
+    <p class="text-xl mb-6 text-center">Join us on June 16, 2025, for a journey through Chianti’s vineyards!</p>
+    <div id="countdown" class="text-2xl mb-8 text-center">
+      <span id="days">0</span> Days <span id="hours">0</span> Hours <span id="minutes">0</span> Minutes <span id="seconds">0</span> Seconds
     </div>
+  </div>
 
-    <!-- Trip Details Tab -->
-    <div id="trip-content" class="tab-content active">
-      <!-- Sub-Tabs -->
-      <div class="flex mb-4">
-        <button id="wine-tour-sub-tab" class="flex-1 py-2 px-4 bg-blue-100 text-blue-700 font-medium rounded-t-lg sub-tab-button active">Wine Tour</button>
-        <button id="day-trip-sub-tab" class="flex-1 py-2 px-4 bg-gray-200 text-gray-700 font-medium rounded-t-lg sub-tab-button">Day Trip Itinerary</button>
-      </div>
+  <!-- Main Content -->
+  <div id="main-content" class="max-w-4xl mx-auto p-4 pt-16">
+    <!-- Itineraries Tab -->
+    <div id="itineraries-content" class="tab-content">
+      <header class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-800">One-Day Chianti Road Trip Itinerary</h1>
+        <p class="text-gray-600 mt-2">From Il Cortile Pratolino to Chianti’s Heart</p>
+      </header>
 
-      <!-- Wine Tour Sub-Tab -->
-      <div id="wine-tour-content" class="sub-tab-content active">
-        <header class="text-center mb-8">
-          <h1 class="text-3xl font-bold text-gray-800">Chianti Classico Wine Tour from Il Cortile Pratolino</h1>
-          <p class="text-gray-600 mt-2">A Wine Adventure from Il Cortile Pratolino</p>
-        </header>
-
-        <section class="mb-8">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Trip Overview</h2>
-          <p class="text-gray-700 leading-relaxed">
-            Enjoy a delightful day trip to the Chianti region, just 45 minutes from Il Cortile Pratolino. Visit Castello di Fonterutoli, a historic winery owned by the Mazzei family since 1435, famous for its Chianti Classico wines. Take a guided vineyard tour, learn about winemaking, and enjoy a tasting of premium wines paired with local cheeses and olive oil. The trip includes a scenic drive through Chianti’s hills and a stop in Radda in Chianti for lunch at a traditional trattoria, featuring dishes like panzanella and bistecca alla fiorentina.
-          </p>
-        </section>
-
-        <section class="mb-8">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Highlights</h2>
-          <ul class="list-disc list-inside text-gray-700">
-            <li>Guided tour and wine tasting at Castello di Fonterutoli</li>
-            <li>Scenic drive through Chianti’s vineyards and olive groves</li>
-            <li>Lunch at a family-run trattoria in Radda in Chianti</li>
-            <li>Explore the medieval village of Radda</li>
-          </ul>
-        </section>
-
-        <section class="mb-8">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Photo Gallery</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <img 
-                src="https://images.pexels.com/photos/1269968/pexels-photo-1269968.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Vineyards at Castello di Fonterutoli" 
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-                onerror="this.src='https://via.placeholder.com/800x600?text=Vineyard+Image+Failed'"
-              >
-              <p class="text-sm text-gray-600 mt-2 text-center">Vineyards at Castello di Fonterutoli</p>
-            </div>
-            <div>
-              <img 
-                src="https://images.pexels.com/photos/747418/pexels-photo-747418.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Chianti’s rolling hills" 
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-                onerror="this.src='https://via.placeholder.com/800x600?text=Hills+Image+Failed'"
-              >
-              <p class="text-sm text-gray-600 mt-2 text-center">Chianti’s rolling hills</p>
-            </div>
-            <div>
-              <img 
-                src="https://images.pexels.com/photos/20832069/pexels-photo-20832069.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Radda in Chianti village" 
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-                onerror="this.src='https://via.placeholder.com/800x600?text=Village+Image+Failed'"
-              >
-              <p class="text-sm text-gray-600 mt-2 text-center">Radda in Chianti village</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="mb-8">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendance</h2>
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <div class="mb-4">
-              <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
-              <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
-            </div>
-            <div class="mb-4">
-              <p class="text-gray-700 font-medium mb-2">Will you attend?</p>
-              <div class="flex space-x-4">
-                <label class="flex items-center">
-                  <input type="radio" name="attending" value="yes" class="mr-2">
-                  Yes
-                </label>
-                <label class="flex items-center">
-                  <input type="radio" name="attending" value="no" class="mr-2">
-                  No
-                </label>
-              </div>
-            </div>
-            <button id="submit-btn" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Submit</button>
-          </div>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendees</h2>
-          <ul id="attendees-list" class="bg-white p-4 rounded-lg shadow-md">
-            <li class="text-gray-600">No attendees yet.</li>
-          </ul>
-        </section>
-      </div>
-
-      <!-- Day Trip Itinerary Sub-Tab -->
-      <div id="day-trip-content" class="sub-tab-content">
-        <header class="text-center mb-8">
-          <h1 class="text-3xl font-bold text-gray-800">One-Day Chianti Road Trip Itinerary</h1>
-          <p class="text-gray-600 mt-2">From Il Cortile Pratolino to Chianti’s Heart</p>
-        </header>
-
-        <section class="mb-8">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Itinerary Overview</h2>
-          <div class="bg-white p-6 rounded-lg shadow-md">
+      <!-- Expanding Panels -->
+      <div class="space-y-4">
+        <div class="bg-white rounded-lg shadow-md">
+          <button id="overview-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Itinerary Overview</button>
+          <div id="overview-panel" class="panel-content p-4">
             <p class="text-gray-700"><strong>Start:</strong> Il Cortile Pratolino, near Montegonzi (9:30 AM)</p>
             <p class="text-gray-700"><strong>Destinations:</strong> Greve in Chianti, Montefioralle, Lamole, Panzano, Castellina in Chianti, Montegonzi</p>
             <p class="text-gray-700"><strong>End:</strong> Montegonzi (by 5:00 PM)</p>
@@ -173,11 +127,11 @@
             <p class="text-gray-700"><strong>Total Driving Time:</strong> ~1 hour 45 minutes</p>
             <p class="text-gray-700"><strong>Total Time:</strong> 7 hours 30 minutes (including activities and lunch)</p>
           </div>
-        </section>
+        </div>
 
-        <section class="mb-8">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Detailed Itinerary</h2>
-          <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="bg-white rounded-lg shadow-md">
+          <button id="itinerary-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Detailed Itinerary</button>
+          <div id="itinerary-panel" class="panel-content p-4">
             <div class="timeline-item">
               <div class="timeline-dot"></div>
               <h3 class="text-lg font-semibold text-gray-800">9:30 AM – Depart to Greve in Chianti</h3>
@@ -251,11 +205,11 @@
               <p class="text-gray-700"><strong>Tips:</strong> Montegonzi is small, so no major activities are planned to ensure the itinerary ends by 5:00 PM.</p>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section class="mb-8">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Time Breakdown</h2>
-          <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="bg-white rounded-lg shadow-md">
+          <button id="time-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Time Breakdown</button>
+          <div id="time-panel" class="panel-content p-4">
             <ul class="list-disc list-inside text-gray-700">
               <li>Driving: 1 hour 45 minutes</li>
               <li>Greve in Chianti: 1 hour</li>
@@ -267,11 +221,11 @@
               <li><strong>Total:</strong> 7 hours 30 minutes (9:30 AM – 5:00 PM)</li>
             </ul>
           </div>
-        </section>
+        </div>
 
-        <section class="mb-8">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Additional Tips</h2>
-          <div class="bg-white p-6 rounded-lg shadow-md">
+        <div class="bg-white rounded-lg shadow-md">
+          <button id="tips-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Additional Tips</button>
+          <div id="tips-panel" class="panel-content p-4">
             <ul class="list-disc list-inside text-gray-700">
               <li><strong>Driving:</strong> The SR222 and side roads are curvy; drive cautiously, especially on the narrow road to Lamole. A compact car is ideal.</li>
               <li><strong>Parking:</strong> Most towns have parking outside the ZTL zones. Greve and Castellina have larger lots; Montefioralle and Panzano have limited spaces.</li>
@@ -281,8 +235,74 @@
               <li><strong>Fuel:</strong> Fill up in Greve (Coop supermarket area on SR222 has gas stations) if needed.</li>
             </ul>
           </div>
-        </section>
+        </div>
       </div>
+
+      <!-- Attendance Section -->
+      <section class="my-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendance</h2>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <div class="mb-4">
+            <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+            <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
+          </div>
+          <div class="mb-4">
+            <p class="text-gray-700 font-medium mb-2">Will you attend?</p>
+            <div class="flex space-x-4">
+              <label class="flex items-center">
+                <input type="radio" name="attending" value="yes" class="mr-2">
+                Yes
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="attending" value="no" class="mr-2">
+                No
+              </label>
+            </div>
+          </div>
+          <button id="submit-btn" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Submit</button>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendees</h2>
+        <ul id="attendees-list" class="bg-white p-4 rounded-lg shadow-md">
+          <li class="text-gray-600">No attendees yet.</li>
+        </ul>
+      </section>
+
+      <!-- Greve in Chianti Photos -->
+      <section class="my-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Greve in Chianti Gallery</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <img 
+              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=800" 
+              alt="Piazza Matteotti in Greve" 
+              class="w-full h-48 object-cover rounded-lg shadow-md"
+              onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+            >
+            <p class="text-sm text-gray-600 mt-2 text-center">Piazza Matteotti in Greve</p>
+          </div>
+          <div>
+            <img 
+              src="https://images.pexels.com/photos/135018/pexels-photo-135018.jpeg?auto=compress&cs=tinysrgb&w=800" 
+              alt="Greve’s historic streets" 
+              class="w-full h-48 object-cover rounded-lg shadow-md"
+              onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+            >
+            <p class="text-sm text-gray-600 mt-2 text-center">Greve’s historic streets</p>
+          </div>
+          <div>
+            <img 
+              src="https://images.pexels.com/photos/156321/pexels-photo-156321.jpeg?auto=compress&cs=tinysrgb&w=800" 
+              alt="Vineyards near Greve" 
+              class="w-full h-48 object-cover rounded-lg shadow-md"
+              onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+            >
+            <p class="text-sm text-gray-600 mt-2 text-center">Vineyards near Greve</p>
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- Map Tab -->
@@ -321,47 +341,54 @@
   </div>
 
   <script>
-    // Tab and Sub-Tab Switching
+    // Countdown Timer
     document.addEventListener('DOMContentLoaded', () => {
-      const tabs = document.querySelectorAll('.tab-button');
+      const tripStart = new Date('2025-06-16T09:30:00+02:00').getTime();
+      const updateCountdown = () => {
+        const now = new Date().getTime();
+        const distance = tripStart - now;
+        if (distance < 0) {
+          document.getElementById('countdown').innerHTML = 'Trip has started!';
+          return;
+        }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+      };
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      // Navigation Dropdown
+      const navDropdown = document.getElementById('nav-dropdown');
       const tabContents = document.querySelectorAll('.tab-content');
-      const subTabs = document.querySelectorAll('.sub-tab-button');
-      const subTabContents = document.querySelectorAll('.sub-tab-content');
+      const landingPage = document.getElementById('landing-page');
+      const mainContent = document.getElementById('main-content');
 
-      tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          tabs.forEach(t => {
-            t.classList.remove('active', 'border-blue-500');
-            t.classList.add('border-transparent');
-          });
-          tabContents.forEach(c => c.classList.remove('active'));
-
-          tab.classList.add('active', 'border-blue-500');
-          document.getElementById(`${tab.id.replace('-tab', '')}-content`).classList.add('active');
-
-          // Reset to Wine Tour sub-tab when switching to Trip Details
-          if (tab.id === 'trip-tab') {
-            subTabs.forEach(st => {
-              st.classList.remove('active', 'bg-blue-100', 'text-blue-700');
-              st.classList.add('bg-gray-200', 'text-gray-700');
-            });
-            subTabContents.forEach(sc => sc.classList.remove('active'));
-            document.getElementById('wine-tour-sub-tab').classList.add('active', 'bg-blue-100', 'text-blue-700');
-            document.getElementById('wine-tour-content').classList.add('active');
-          }
-        });
+      navDropdown.addEventListener('change', () => {
+        const selectedTab = navDropdown.value;
+        tabContents.forEach(c => c.classList.remove('active'));
+        if (selectedTab === 'landing') {
+          landingPage.classList.add('active');
+          mainContent.classList.add('hidden');
+        } else {
+          landingPage.classList.remove('active');
+          mainContent.classList.remove('hidden');
+          document.getElementById(`${selectedTab}-content`).classList.add('active');
+        }
       });
 
-      subTabs.forEach(subTab => {
-        subTab.addEventListener('click', () => {
-          subTabs.forEach(st => {
-            st.classList.remove('active', 'bg-blue-100', 'text-blue-700');
-            st.classList.add('bg-gray-200', 'text-gray-700');
-          });
-          subTabContents.forEach(sc => sc.classList.remove('active'));
-
-          subTab.classList.add('active', 'bg-blue-100', 'text-blue-700');
-          document.getElementById(`${subTab.id.replace('-sub-tab', '')}-content`).classList.add('active');
+      // Expanding Panels
+      const panelButtons = document.querySelectorAll('[id$="-panel-btn"]');
+      panelButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const panelId = button.id.replace('-btn', '');
+          const panel = document.getElementById(panelId);
+          panel.classList.toggle('active');
         });
       });
 
