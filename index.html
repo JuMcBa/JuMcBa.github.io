@@ -193,7 +193,7 @@
       </div>
 
       <!-- Itinerary Section -->
-      <div id="itinerary-section">
+      <div id="itinerary-section" class="hidden">
         <header class="text-center mb-8">
           <h2 class="text-3xl font-bold text-gray-800">Greve</h2>
           <p class="text-gray-600 mt-2">From Il Cortile Pratolino to Chianti’s Heart</p>
@@ -218,7 +218,7 @@
             <div id="itinerary-panel" class="panel-content p-4">
               <div class="timeline-item">
                 <div class="timeline-dot"></div>
-                <-member>9:30 AM – Depart to Greve in Chianti</h3>
+                <h3 class="text-lg font-semibold text-gray-800">9:30 AM – Depart to Greve in Chianti</h3>
                 <p class="text-gray-700"><strong>Drive:</strong> 15 km, ~20 minutes. From Il Cortile Pratolino, head south on local roads toward SP94. Turn right onto SP94, then left onto SR222 (Via Chiantigiana) toward Greve in Chianti. Follow SR222 for ~15 km. Park near Piazza Matteotti (try via Cesare Battisti for the large parking lot on via Rosa Libri).</p>
                 <p class="text-gray-700"><strong>Scenic Notes:</strong> The drive along SR222 offers rolling hills, vineyards, and cypress trees. Look for photo opportunities at vineyard viewpoints.</p>
               </div>
@@ -321,38 +321,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Attendance Section -->
-        <section class="my-8">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendance</h2>
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <div class="mb-4">
-              <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
-              <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
-            </div>
-            <div class="mb-4">
-              <p class="text-gray-700 font-medium mb-2">Will you attend?</p>
-              <div class="flex space-x-4">
-                <label class="flex items-center">
-                  <input type="radio" name="attending" value="yes" class="mr-2">
-                  Yes
-                </label>
-                <label class="flex items-center">
-                  <input type="radio" name="attending" value="no" class="mr-2">
-                  No
-                </label>
-              </div>
-            </div>
-            <button id="submit-btn" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Submit</button>
-          </div>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendees</h2>
-          <ul id="attendees-list" class="bg-white p-4 rounded-lg shadow-md">
-            <li class="text-gray-600">No attendees yet.</li>
-          </ul>
-        </section>
 
         <!-- Greve in Chianti Gallery -->
         <section class="my-8">
@@ -518,6 +486,8 @@
           landingPage.classList.add('active');
           mainContent.classList.add('hidden');
           navDropdown.value = 'landing';
+          // Hide itinerary section when navigating away
+          document.getElementById('itinerary-section').classList.add('hidden');
         } else {
           landingPage.classList.remove('active');
           mainContent.classList.remove('hidden');
@@ -551,6 +521,7 @@
           const targetId = tile.getAttribute('data-target');
           const targetSection = document.getElementById(targetId);
           if (targetSection) {
+            targetSection.classList.remove('hidden');
             targetSection.scrollIntoView({ behavior: 'smooth' });
           }
         });
@@ -564,51 +535,6 @@
           const panel = document.getElementById(panelId);
           panel.classList.toggle('active');
         });
-      });
-
-      // Attendance Form
-      const nameInput = document.getElementById('name');
-      const radioButtons = document.querySelectorAll('input[name="attending"]');
-      const submitBtn = document.getElementById('submit-btn');
-      const attendeesList = document.getElementById('attendees-list');
-
-      const loadAttendees = () => {
-        const attendees = JSON.parse(localStorage.getItem('attendees') || '[]');
-        if (attendees.length > 0) {
-          attendeesList.innerHTML = '';
-          attendees.forEach(attendee => {
-            const li = document.createElement('li');
-            li.className = 'text-gray-700';
-            li.textContent = `${attendee.name}: ${attendee.attending === 'yes' ? 'Attending' : 'Not Attending'}`;
-            attendeesList.appendChild(li);
-          });
-        } else {
-          attendeesList.innerHTML = '<li class="text-gray-600">No attendees yet.</li>';
-        }
-      };
-      loadAttendees();
-
-      function updateSubmitButton() {
-        const name = nameInput.value.trim();
-        const attending = Array.from(radioButtons).some(radio => radio.checked);
-        submitBtn.disabled = !name || !attending;
-      }
-
-      nameInput.addEventListener('input', updateSubmitButton);
-      radioButtons.forEach(radio => radio.addEventListener('change', updateSubmitButton));
-
-      submitBtn.addEventListener('click', () => {
-        const name = nameInput.value.trim();
-        const attending = document.querySelector('input[name="attending"]:checked').value;
-        if (name && attending) {
-          const attendees = JSON.parse(localStorage.getItem('attendees') || '[]');
-          attendees.push({ name, attending });
-          localStorage.setItem('attendees', JSON.stringify(attendees));
-          loadAttendees();
-          nameInput.value = '';
-          radioButtons.forEach(radio => radio.checked = false);
-          submitBtn.disabled = true;
-        }
       });
 
       // Messenger Form
