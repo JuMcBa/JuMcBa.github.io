@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tuscany Day Trip</title>
+  <title>Tuscany 2025</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     img {
@@ -49,20 +49,14 @@
       border-radius: 50%;
     }
     .landing-bg {
-      background-image: url('https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1600');
+      background-image: url('https://previews.dropbox.com/p/thumb/ACppVoGluZRG2N3YvDWT8HZhRK9dnl5opL_T5DxWIAlE4KftANx_biWlrInUEW1PlrvPW53UP-GJtX3H6TVvEDX1kN-IcTip93gTFiOq_G8GGV3QBIE4UgZIx0ZDFwdyd18w-28ScY5p0SZK426k1tZSSUgQsWQ7atywT2vZolSxYN-g_2b1mG6yVwErsO68RGrJDKS64TRTRcHcvUomsSTR3pPfTduQ1xSzsBaP6tRQ4BWzlAjGmClOUQI_ockT9SYxhKMSkk7Aqmh32qiWhVQo-nTGPRwPJ_k4RGi-HbKH5QijZc0IlwwEUKDUXzeocI44efmZpqQyIG3tbBV0lZMS/p.jpeg?is_prewarmed=true');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      position: relative;
       /* Fallback base64 gray */
       background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAEhQGAdeS9bAAAAABJRU5ErkJggg==');
-      position: relative;
     }
     .landing-bg img.fallback {
       position: absolute;
@@ -72,6 +66,21 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
+    }
+    .text-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1;
     }
     .nav-bar {
       position: fixed;
@@ -112,6 +121,19 @@
       outline: none;
       width: 150px;
     }
+    #bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background-color: #1f2937;
+      color: white;
+      text-align: center;
+      padding: 0.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+    }
   </style>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -119,6 +141,7 @@
   <div class="nav-bar">
     <button id="home-btn">Home</button>
     <select id="nav-dropdown">
+      <option value="landing">Home</option>
       <option value="itineraries">Itineraries</option>
       <option value="map">Map</option>
       <option value="messenger">Messenger</option>
@@ -128,14 +151,16 @@
   <!-- Landing Page -->
   <div id="landing-page" class="tab-content active landing-bg">
     <img 
-      src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=1600" 
+      src="https://previews.dropbox.com/p/thumb/ACppVoGluZRG2N3YvDWT8HZhRK9dnl5opL_T5DxWIAlE4KftANx_biWlrInUEW1PlrvPW53UP-GJtX3H6TVvEDX1kN-IcTip93gTFiOq_G8GGV3QBIE4UgZIx0ZDFwdyd18w-28ScY5p0SZK426k1tZSSUgQsWQ7atywT2vZolSxYN-g_2b1mG6yVwErsO68RGrJDKS64TRTRcHcvUomsSTR3pPfTduQ1xSzsBaP6tRQ4BWzlAjGmClOUQI_ockT9SYxhKMSkk7Aqmh32qiWhVQo-nTGPRwPJ_k4RGi-HbKH5QijZc0IlwwEUKDUXzeocI44efmZpqQyIG3tbBV0lZMS/p.jpeg?is_prewarmed=true" 
       alt="Tuscany Landscape Fallback" 
       class="fallback"
       onerror="this.src='https://via.placeholder.com/800x600?text=Tuscany+Image+Failed'"
     >
-    <h1 class="text-4xl font-bold mb-4 text-center">Tuscany Day Trip Adventure</h1>
-    <div id="countdown" class="text-2xl text-center">
-      <span id="days">0</span> Days <span id="hours">0</span> Hours <span id="minutes">0</span> Minutes <span id="seconds">0</span> Seconds
+    <div class="text-overlay">
+      <h1 class="text-4xl font-bold text-center">Chianti 2025</h1>
+      <div id="countdown" class="text-2xl text-center mt-4">
+        <span id="days">0</span> Days <span id="hours">0</span> Hours <span id="minutes">0</span> Minutes <span id="seconds">0</span> Seconds
+      </div>
     </div>
   </div>
 
@@ -408,7 +433,7 @@
 
     <!-- Messenger Tab -->
     <div id="messenger-content" class="tab-content">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Messenger</h2>
+      <h2 class="text-2xl font-bold text-gray-800 mb-4">Messenger</h2>
       <div class="bg-white p-6 rounded-lg shadow-md mb-4">
         <div class="mb-4">
           <label for="message-name" class="block text-gray-700 font-medium mb-2">Your Name</label>
@@ -426,6 +451,9 @@
       </ul>
     </div>
   </div>
+
+  <!-- Bottom Bar -->
+  <div id="bottom-bar" class="hidden">Chianti 2025</div>
 
   <script>
     // Countdown Timer
@@ -462,7 +490,7 @@
         if (tab === 'landing') {
           landingPage.classList.add('active');
           mainContent.classList.add('hidden');
-          navDropdown.value = 'itineraries'; // Reset dropdown
+          navDropdown.value = 'landing';
         } else {
           landingPage.classList.remove('active');
           mainContent.classList.remove('hidden');
@@ -477,6 +505,16 @@
 
       homeBtn.addEventListener('click', () => {
         navigateTo('landing');
+      });
+
+      // Bottom Bar Visibility
+      const bottomBar = document.getElementById('bottom-bar');
+      window.addEventListener('scroll', () => {
+        if (window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight) {
+          bottomBar.classList.remove('hidden');
+        } else {
+          bottomBar.classList.add('hidden');
+        }
       });
 
       // Expanding Panels
