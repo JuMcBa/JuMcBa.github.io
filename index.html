@@ -54,14 +54,8 @@
       background-position: center top;
       background-repeat: no-repeat;
       width: 100%;
-      min-height: 60vw; /* Approximate 1440x600 aspect ratio */
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-      position: relative;
+      padding-bottom: 41.67%; /* 600/1440 aspect ratio to show full image height */
+      position: relative; /* To contain absolutely positioned child */
       /* Fallback base64 gray */
       background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8DwHwAEhQGAdeS9bAAAAABJRU5ErkJggg==');
     }
@@ -71,8 +65,17 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       z-index: -1;
+    }
+    .centered-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      text-align: center;
     }
     .nav-bar {
       position: fixed;
@@ -183,8 +186,9 @@
     <select id="nav-dropdown">
       <option value="landing">Home</option>
       <option value="itineraries">Itineraries</option>
-      <option value="map">Map</option>
-      <option value="messenger">Messenger</option>
+      <option value="page1">Page 1</option>
+      <option value="page2">Page 2</option>
+      <option value="page3">Page 3</option>
     </select>
   </div>
 
@@ -205,7 +209,7 @@
         class="fallback"
         onerror="this.src='https://via.placeholder.com/800x600?text=Tuscany+Image+Failed'"
       >
-      <div class="flex flex-col items-center justify-center">
+      <div class="centered-content">
         <h1 class="text-4xl font-bold text-center">Italy 2025</h1>
         <div id="countdown" class="text-2xl text-center mt-4">
           <span id="days">0</span> Days <span id="hours">0</span> Hours <span id="minutes">0</span> Minutes <span id="seconds">0</span> Seconds
@@ -361,92 +365,6 @@
               </ul>
             </div>
           </div>
-          <section class="my-8">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Greve in Chianti Gallery</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div>
-                <img 
-                  src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Piazza Matteotti in Greve" 
-                  class="w-full h-48 object-cover rounded-lg shadow-md"
-                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-                >
-                <p class="text-sm text-gray-600 mt-2 text-center">Piazza Matteotti in Greve</p>
-              </div>
-              <div>
-                <img 
-                  src="https://images.pexels.com/photos/135018/pexels-photo-135018.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Greve’s historic streets" 
-                  class="w-full h-48 object-cover rounded-lg shadow-md"
-                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-                >
-                <p class="text-sm text-gray-600 mt-2 text-center">Greve’s historic streets</p>
-              </div>
-              <div>
-                <img 
-                  src="https://images.pexels.com/photos/156321/pexels-photo-156321.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Vineyards near Greve" 
-                  class="w-full h-48 object-cover rounded-lg shadow-md"
-                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-                >
-                <p class="text-sm text-gray-600 mt-2 text-center">Vineyards near Greve</p>
-              </div>
-              <div>
-                <img 
-                  src="https://images.pexels.com/photos/747418/pexels-photo-747418.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Tuscan countryside near Greve" 
-                  class="w-full h-48 object-cover rounded-lg shadow-md"
-                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-                >
-                <p class="text-sm text-gray-600 mt-2 text-center">Tuscan countryside near Greve</p>
-              </div>
-              <div>
-                <img 
-                  src="https://images.pexels.com/photos/5409751/pexels-photo-5409751.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Greve valley landscape" 
-                  class="w-full h-48 object-cover rounded-lg shadow-md"
-                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-                >
-                <p class="text-sm text-gray-600 mt-2 text-center">Greve valley landscape</p>
-              </div>
-              <div>
-                <img 
-                  src="https://images.pexels.com/photos/2086030/pexels-photo-2086030.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Chianti vineyards near Greve" 
-                  class="w-full h-48 object-cover rounded-lg shadow-md"
-                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-                >
-                <p class="text-sm text-gray-600 mt-2 text-center">Chianti vineyards near Greve</p>
-              </div>
-              <div>
-                <img 
-                  src="https://images.pexels.com/photos/1269968/pexels-photo-1269968.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Greve’s rolling hills" 
-                  class="w-full h-48 object-cover rounded-lg shadow-md"
-                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-                >
-                <p class="text-sm text-gray-600 mt-2 text-center">Greve’s rolling hills</p>
-              </div>
-              <div>
-                <img 
-                  src="https://images.pexels.com/photos/20832069/pexels-photo-20832069.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Historic Greve village" 
-                  class="w-full h-48 object-cover rounded-lg shadow-md"
-                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-                >
-                <p class="text-sm text-gray-600 mt-2 text-center">Historic Greve village</p>
-              </div>
-              <div>
-                <img 
-                  src="https://images.pexels.com/photos/46148/pexels-photo-46148.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                  alt="Tuscan stone buildings in Greve" 
-                  class="w-full h-48 object-cover rounded-lg shadow-md"
-                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-                >
-                <p class="text-sm text-gray-600 mt-2 text-center">Tuscan stone buildings in Greve</p>
-              </div>
-            </div>
-          </section>
         </div>
 
         <div id="itinerary-section-panzano" class="hidden">
@@ -614,54 +532,93 @@
           </div>
         </div>
 
-        <!-- General Information Section -->
-        <div id="general-info-section">
-          <header class="text-center mb-8">
-            <h2 class="text-3xl font-bold text-gray-800">General Information</h2>
-            <p class="text-gray-600 mt-2">Trip-wide details and activities</p>
-          </header>
-          <div class="space-y-4">
-            <div class="bg-white rounded-lg shadow-md">
-              <button id="dinner-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Dinner Plans</button>
-              <div id="dinner-panel" class="panel-content p-4">
-                <ul class="list-disc list-inside text-gray-700">
-                  <li>Dinner for all for six nights (every night except Tuesday).</li>
-                  <li><strong>Thursday Night (June 19):</strong> Pizza dinner at the normal cost of a menu, with pizzas made on trays by the staff in the villa kitchen, as is common with Italian families. We had considered a pizza truck but opted for this alternative.</li>
-                  <li><strong>Other Nights:</strong> The chef will decide the sequence of our menu selections:</li>
-                  <ul class="list-disc list-inside ml-4">
-                    <li>Lavanda: Two adult Veggies, rest Traditional Tuscan</li>
-                    <li>Peoria: Two adult Veggies, rest Traditional Tuscan</li>
-                    <li>Timo: Two adult Veggies, rest Traditional Tuscan</li>
-                    <li>Rosa: Two adult Veggies, rest Traditional Tuscan</li>
-                    <li>Bouganville: All Traditional Tuscan</li>
-                  </ul>
-                </ul>
-              </div>
+        <!-- Greve in Chianti Gallery -->
+        <section class="my-8">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Greve in Chianti Gallery</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Piazza Matteotti in Greve" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Piazza Matteotti in Greve</p>
             </div>
-            <div class="bg-white rounded-lg shadow-md">
-              <button id="activities-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Scheduled Activities</button>
-              <div id="activities-panel" class="panel-content p-4">
-                <ul class="list-disc list-inside text-gray-700">
-                  <li>Several activities scheduled via TN&M’s local coordinator:</li>
-                  <ul class="list-disc list-inside ml-4">
-                    <li><strong>Wine Tasting:</strong> 5:30 PM on Monday, June 16, for Roger, Beverly, Jim, and Linda. A sommelier from nearby La Lappe will conduct the tasting, offering tips about wines and wineries of particular interest.</li>
-                    <li><strong>Tennis:</strong> 1-hour session at a nearby court for Matt and person TBD at 10:30 AM on Monday, June 16 (time confirmation pending).</li>
-                    <li><strong>Horseback Riding:</strong> 10:30 AM on Thursday, June 19, for Roger, Melissa, Jim, and Linda (time confirmation pending).</li>
-                  </ul>
-                </ul>
-              </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/135018/pexels-photo-135018.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Greve’s historic streets" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Greve’s historic streets</p>
             </div>
-            <div class="bg-white rounded-lg shadow-md">
-              <button id="timing-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Timing Considerations</button>
-              <div id="timing-panel" class="panel-content p-4">
-                <ul class="list-disc list-inside text-gray-700">
-                  <li><strong>Check-in:</strong> 4:00 PM on Saturday, June 14. Bev and Roger will be there at that time.</li>
-                  <li><strong>Check-out:</strong> 10:00 AM on the following Saturday, June 21.</li>
-                </ul>
-              </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/156321/pexels-photo-156321.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Vineyards near Greve" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Vineyards near Greve</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/747418/pexels-photo-747418.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Tuscan countryside near Greve" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Tuscan countryside near Greve</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/5409751/pexels-photo-5409751.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Greve valley landscape" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Greve valley landscape</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/2086030/pexels-photo-2086030.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Chianti vineyards near Greve" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Chianti vineyards near Greve</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/1269968/pexels-photo-1269968.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Greve’s rolling hills" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Greve’s rolling hills</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/20832069/pexels-photo-20832069.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Historic Greve village" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Historic Greve village</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/46148/pexels-photo-46148.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Tuscan stone buildings in Greve" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Tuscan stone buildings in Greve</p>
             </div>
           </div>
-        </div>
+        </section>
       </div>
     </div>
   </div>
@@ -676,38 +633,37 @@
       </header>
     </div>
 
-    <!-- Map Tab -->
-    <div id="map-content" class="tab-content">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">Driving Directions from Florence to Il Cortile Pratolino</h2>
-      <p class="text-gray-700 mb-4">
-        Below is a map showing the driving route from Florence (Piazza della Signoria) to Il Cortile Pratolino, approximately 14 km (25 minutes) via SR65 and local roads.
-      </p>
-      <iframe 
-        class="w-full h-96 rounded-lg shadow-md" 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.843483974592!2d11.252497315509693!3d43.78035097911706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a56a680d2d6ad%3A0x93d57903d7db7b79!2sPiazza%20della%20Signoria%2C%2050122%20Firenze%20FI%2C%20Italy!5e0!3m2!1sen!2sus!4v1697584321098!5m2!1sen!2sus&destination=Il+Cortile+Pratolino%2C+Via+della+Lastruccia%2C+50036+Pratolino+FI%2C+Italy" 
-        allowfullscreen="" 
-        loading="lazy"
-      ></iframe>
+    <!-- Page 1 Tab -->
+    <div id="page1-content" class="tab-content">
+      <header class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-800">Page 1</h1>
+        <p class="text-gray-600 mt-2">Welcome to Page 1</p>
+      </header>
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <p class="text-gray-700">This is a placeholder for Page 1 content. Add your details here.</p>
+      </div>
     </div>
 
-    <!-- Messenger Tab -->
-    <div id="messenger-content" class="tab-content">
-      <h2 class="text-2xl font-bold text-gray-800 mb-4">Messenger</h2>
-      <div class="bg-white p-6 rounded-lg shadow-md mb-4">
-        <div class="mb-4">
-          <label for="message-name" class="block text-gray-700 font-medium mb-2">Your Name</label>
-          <input type="text" id="message-name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
-        </div>
-        <div class="mb-4">
-          <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-          <textarea id="message" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your message" rows="4"></textarea>
-        </div>
-        <button id="message-submit" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Send</button>
+    <!-- Page 2 Tab -->
+    <div id="page2-content" class="tab-content">
+      <header class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-800">Page 2</h1>
+        <p class="text-gray-600 mt-2">Welcome to Page 2</p>
+      </header>
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <p class="text-gray-700">This is a placeholder for Page 2 content. Add your details here.</p>
       </div>
-      <h3 class="text-xl font-semibold text-gray-800 mb-2">Messages</h3>
-      <ul id="message-list" class="bg-white p-4 rounded-lg shadow-md">
-        <li class="text-gray-600">No messages yet.</li>
-      </ul>
+    </div>
+
+    <!-- Page 3 Tab -->
+    <div id="page3-content" class="tab-content">
+      <header class="text-center mb-8">
+        <h1 class="text-3xl font-bold text-gray-800">Page 3</h1>
+        <p class="text-gray-600 mt-2">Welcome to Page 3</p>
+      </header>
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <p class="text-gray-700">This is a placeholder for Page 3 content. Add your details here.</p>
+      </div>
     </div>
   </div>
 
@@ -825,65 +781,6 @@
           modalContentBody.innerHTML = '';
         }
       });
-
-      // Expanding Panels (for General Info)
-      const panelButtons = document.querySelectorAll('[id$="-panel-btn"]:not([id$="-panel-btn-greve"]):not([id$="-panel-btn-panzano"]):not([id$="-panel-btn-castellina"]):not([id$="-panel-btn-montefioralle"])');
-      panelButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const panelId = button.id.replace('-btn', '');
-          const panel = document.getElementById(panelId);
-          panel.classList.toggle('active');
-        });
-      });
-
-      // Messenger Form
-      const messageNameInput = document.getElementById('message-name');
-      const messageInput = document.getElementById('message');
-      const messageSubmitBtn = document.getElementById('message-submit');
-      const messageList = document.getElementById('message-list');
-
-      const loadMessages = () => {
-        const messages = JSON.parse(localStorage.getItem('messages') || '[]');
-        if (messages.length > 0) {
-          messageList.innerHTML = '';
-          messages.forEach(msg => {
-            const li = document.createElement('li');
-            li.className = 'text-gray-700 mb-2';
-            li.textContent = `${msg.name} (${new Date(msg.timestamp).toLocaleString()}): ${msg.text}`;
-            messageList.appendChild(li);
-          });
-        } else {
-          messageList.innerHTML = '<li class="text-gray-600">No messages yet.</li>';
-        }
-      };
-      loadMessages();
-
-      function updateMessageSubmitButton() {
-        const name = messageNameInput.value.trim();
-        const message = messageInput.value.trim();
-        messageSubmitBtn.disabled = !name || !message;
-      }
-
-      messageNameInput.addEventListener('input', updateMessageSubmitButton);
-      messageInput.addEventListener('input', updateMessageSubmitButton);
-
-      if (messageSubmitBtn) {
-        messageSubmitBtn.addEventListener('click', () => {
-          const name = messageNameInput.value.trim();
-          const text = messageInput.value.trim();
-          if (name && text) {
-            const messages = JSON.parse(localStorage.getItem('messages') || '[]');
-            messages.push({ name, text, timestamp: new Date().toISOString() });
-            localStorage.setItem('messages', JSON.stringify(messages));
-            loadMessages();
-            messageNameInput.value = '';
-            messageInput.value = '';
-            messageSubmitBtn.disabled = true;
-          }
-        });
-      } else {
-        console.warn('Message submit button not found');
-      }
 
       console.log('App loaded successfully');
     });
