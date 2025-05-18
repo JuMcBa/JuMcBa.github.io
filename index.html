@@ -49,7 +49,7 @@
       border-radius: 50%;
     }
     .landing-bg {
-      background-image: url('https://previews.dropbox.com/p/thumb/ACppVoGluZRG2N3YvDWT8HZhRK9dnl5opL_T5DxWIAlE4KftANx_biWlrInUEW1PlrvPW53UP-GJtX3H6TVvEDX1kN-IcTip93gTFiOq_G8GGV3QBIE4UgZIx0ZDFwdyd18w-28ScY5p0SZK426k1tZSSUgQsWQ7atywT2vZolSxYN-g_2b1mG6yVwErsO68RGrJDKS64TRTRcHcvUomsSTR3pPfTduQ1xSzsBaP6tRQ4BWzlAjGmClOUQI_ockT9SYxhKMSkk7Aqmh32qiWhVQo-nTGPRwPJ_k4RGi-HbKH5QijZc0IlwwEUKDUXzeocI44efmZpqQyIG3tbBV0lZMS/p.jpeg?is_prewarmed=true');
+      background-image: url('https://www.shutterstock.com/shutterstock/photos/2373587937/display_1500/stock-photo-aerial-view-of-florence-cathedral-duomo-di-firenze-cathedral-of-saint-mary-of-the-flower-sunset-2373587937.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -134,6 +134,17 @@
       font-size: 1rem;
       font-weight: 500;
     }
+    .itinerary-tile {
+      background-color: white;
+      border-radius: 0.375rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .itinerary-tile:hover {
+      transform: scale(1.02);
+    }
   </style>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -151,7 +162,7 @@
   <!-- Landing Page -->
   <div id="landing-page" class="tab-content active landing-bg">
     <img 
-      src="https://previews.dropbox.com/p/thumb/ACppVoGluZRG2N3YvDWT8HZhRK9dnl5opL_T5DxWIAlE4KftANx_biWlrInUEW1PlrvPW53UP-GJtX3H6TVvEDX1kN-IcTip93gTFiOq_G8GGV3QBIE4UgZIx0ZDFwdyd18w-28ScY5p0SZK426k1tZSSUgQsWQ7atywT2vZolSxYN-g_2b1mG6yVwErsO68RGrJDKS64TRTRcHcvUomsSTR3pPfTduQ1xSzsBaP6tRQ4BWzlAjGmClOUQI_ockT9SYxhKMSkk7Aqmh32qiWhVQo-nTGPRwPJ_k4RGi-HbKH5QijZc0IlwwEUKDUXzeocI44efmZpqQyIG3tbBV0lZMS/p.jpeg?is_prewarmed=true" 
+      src="https://www.shutterstock.com/shutterstock/photos/2373587937/display_1500/stock-photo-aerial-view-of-florence-cathedral-duomo-di-firenze-cathedral-of-saint-mary-of-the-flower-sunset-2373587937.jpg" 
       alt="Tuscany Landscape Fallback" 
       class="fallback"
       onerror="this.src='https://via.placeholder.com/800x600?text=Tuscany+Image+Failed'"
@@ -169,252 +180,268 @@
     <!-- Itineraries Tab -->
     <div id="itineraries-content" class="tab-content">
       <header class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800">One-Day Chianti Road Trip Itinerary</h1>
-        <p class="text-gray-600 mt-2">From Il Cortile Pratolino to Chianti’s Heart</p>
+        <h1 class="text-3xl font-bold text-gray-800">Itineraries</h1>
+        <p class="text-gray-600 mt-2">Choose your Chianti adventure</p>
       </header>
 
-      <!-- Expanding Panels -->
-      <div class="space-y-4">
-        <div class="bg-white rounded-lg shadow-md">
-          <button id="overview-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Itinerary Overview</button>
-          <div id="overview-panel" class="panel-content p-4">
-            <p class="text-gray-700"><strong>Start:</strong> Il Cortile Pratolino, near Montegonzi (9:30 AM)</p>
-            <p class="text-gray-700"><strong>Destinations:</strong> Greve in Chianti, Montefioralle, Lamole, Panzano, Castellina in Chianti, Montegonzi</p>
-            <p class="text-gray-700"><strong>End:</strong> Montegonzi (by 5:00 PM)</p>
-            <p class="text-gray-700"><strong>Total Driving Distance:</strong> ~60 km</p>
-            <p class="text-gray-700"><strong>Total Driving Time:</strong> ~1 hour 45 minutes</p>
-            <p class="text-gray-700"><strong>Total Time:</strong> 7 hours 30 minutes (including activities and lunch)</p>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-lg shadow-md">
-          <button id="itinerary-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Detailed Itinerary</button>
-          <div id="itinerary-panel" class="panel-content p-4">
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <h3 class="text-lg font-semibold text-gray-800">9:30 AM – Depart to Greve in Chianti</h3>
-              <p class="text-gray-700"><strong>Drive:</strong> 15 km, ~20 minutes. From Il Cortile Pratolino, head south on local roads toward SP94. Turn right onto SP94, then left onto SR222 (Via Chiantigiana) toward Greve in Chianti. Follow SR222 for ~15 km. Park near Piazza Matteotti (try via Cesare Battisti for the large parking lot on via Rosa Libri).</p>
-              <p class="text-gray-700"><strong>Scenic Notes:</strong> The drive along SR222 offers rolling hills, vineyards, and cypress trees. Look for photo opportunities at vineyard viewpoints.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <h3 class="text-lg font-semibold text-gray-800">9:50 AM – 10:50 AM: Greve in Chianti (1 hour)</h3>
-              <p class="text-gray-700"><strong>Activities:</strong> Stroll Piazza Matteotti, the arcaded main square, with shops selling local wines, olive oil, and crafts. Admire the statue of explorer Giovanni da Verrazzano. Visit Antica Macelleria Falorni, a historic butcher shop since 1729, for a quick tasting of Tuscan cold cuts or to buy specialties. Pop into an enoteca like Enoteca Falorni for a quick Chianti Classico tasting (5-10 minutes, no reservation needed).</p>
-              <p class="text-gray-700"><strong>Tips:</strong> Greve is Chianti’s commercial hub, so it’s lively but parking is straightforward outside the ZTL (Limited Traffic Zone). Avoid driving into the historic center.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <h3 class="text-lg font-semibold text-gray-800">10:50 AM – Drive to Montefioralle</h3>
-              <p class="text-gray-700"><strong>Drive:</strong> 2 km, ~5 minutes. From Piazza Matteotti, take Via Roma west, following signs for Montefioralle. The road climbs uphill for ~2 km to the village. Park just outside the walls at Piazza Santo Stefano.</p>
-              <p class="text-gray-700"><strong>Scenic Notes:</strong> The short, winding road offers views of vineyards and the Greve valley.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <h3 class="text-lg font-semibold text-gray-800">11:00 AM – 11:45 AM: Montefioralle (45 minutes)</h3>
-              <p class="text-gray-700"><strong>Activities:</strong> Wander the narrow, cobbled streets of this tiny, fortified borgo, one of Italy’s most beautiful villages. See the Church of Santo Stefano and the house of Amerigo Vespucci (marked by a wasp coat of arms). Stop at Montefioralle Winery for a quick Chianti Classico or Vin Santo tasting (10 minutes, call ahead if possible: +39 055 853 189). Capture panoramic views of the surrounding vineyards and stone houses adorned with flowers.</p>
-              <p class="text-gray-700"><strong>Tips:</strong> Montefioralle is compact, so 45 minutes is enough to explore. Avoid parking inside the village to save time.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <h3 class="text-lg font-semibold text-gray-800">11:45 AM – Drive to Lamole</h3>
-              <p class="text-gray-700"><strong>Drive:</strong> 8 km, ~15 minutes. Return to Greve via the same road, then from Greve, follow SR222 south for ~1 km. Turn left onto Via Lamole (SP119), a narrow, winding road, and continue for ~7 km to Lamole. Park near Ristoro di Lamole (Via di Lamole, 6).</p>
-              <p class="text-gray-700"><strong>Scenic Notes:</strong> The road to Lamole is steep and curvy but stunning, with breathtaking views of Chianti Classico vineyards. Drive cautiously due to tight turns.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <h3 class="text-lg font-semibold text-gray-800">12:15 PM – 1:45 PM: Lunch at Ristoro di Lamole (1 hour 30 minutes)</h3>
-              <p class="text-gray-700"><strong>Activity:</strong> Enjoy lunch at Ristoro di Lamole, a trattoria with a panoramic terrace overlooking vineyards. Try seasonal pastas like tagliolini with truffles or Florentine steak. Pair with a glass of Chianti Classico. Reservations are recommended (+39 055 854 7050).</p>
-              <p class="text-gray-700"><strong>Tips:</strong> The terrace is a highlight, so request an outdoor seat if weather permits. Keep lunch to 90 minutes to stay on schedule.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <h3 class="text-lg font-semibold text-gray-800">1:45 PM – Drive to Panzano</h3>
-              <p class="text-gray-700"><strong>Drive:</strong> 6 km, ~10 minutes. Return down Via Lamole to SR222, turn left, and head south for ~6 km to Panzano. Park near the main square or Panzano Alto (upper village).</p>
-              <p class="text-gray-700"><strong>Scenic Notes:</strong> The SR222 stretch is very panoramic, with photo stops possible at vineyard pullouts.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <h3 class="text-lg font-semibold text-gray-800">2:00 PM – 3:00 PM: Panzano (1 hour)</h3>
-              <p class="text-gray-700"><strong>Activities:</strong> Visit Antica Macelleria Cecchini, Dario Cecchini’s famous butcher shop, for a quick tasting of Tuscan meats or to see his Dante-quoting showmanship (no reservation needed for the shop). Walk to Panzano Alto to see the Castle of Panzano’s remains and the Church of Santa Maria (rebuilt in the 19th century). Enjoy views from the small square. If time allows, take a 2-minute drive south to Pieve di San Leolino, a 10th-century Romanesque church with sacred artworks (5-minute visit).</p>
-              <p class="text-gray-700"><strong>Tips:</strong> Panzano is small but charming. Focus on the butcher shop and a quick walk to stay on schedule.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <h3 class="text-lg font-semibold text-gray-800">3:00 PM – Drive to Castellina in Chianti</h3>
-              <p class="text-gray-700"><strong>Drive:</strong> 15 km, ~20 minutes. Continue south on SR222 for ~15 km to Castellina in Chianti. Park near the main square or along Via IV Novembre.</p>
-              <p class="text-gray-700"><strong>Scenic Notes:</strong> This stretch of SR222 has tight curves but offers panoramic views of hills and vineyards.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <h3 class="text-lg font-semibold text-gray-800">3:20 PM – 4:20 PM: Castellina in Chianti (1 hour)</h3>
-              <p class="text-gray-700"><strong>Activities:</strong> Walk Via delle Volte, a romantic, medieval stone-vaulted passageway with shops and enotecas (10-minute stroll with valley views). Visit the main square’s Rocca Fortress, now home to the Archaeological Museum of Chianti Senese, and climb the tower for panoramic views (15 minutes, €5 entry). Grab a quick gelato at Gelateria Castellina with unique flavors like ricotta and fig or cantuccini and Vin Santo (5 minutes).</p>
-              <p class="text-gray-700"><strong>Tips:</strong> Castellina is compact, so prioritize Via delle Volte and the fortress. Avoid lingering in shops to stay on time.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <h3 class="text-lg font-semibold text-gray-800">4:20 PM – Drive to Montegonzi</h3>
-              <p class="text-gray-700"><strong>Drive:</strong> 14 km, ~20 minutes. From Castellina, take SR222 north for ~5 km, then turn right onto SP99 toward Montegonzi. Follow SP99 for ~4 km to Montegonzi, then local roads to Il Cortile Pratolino.</p>
-              <p class="text-gray-700"><strong>Scenic Notes:</strong> The route back passes through the Greve valley, with woodland paths and vineyard views.</p>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <h3 class="text-lg font-semibold text-gray-800">4:40 PM – Arrive in Montegonzi (by 5:00 PM)</h3>
-              <p class="text-gray-700"><strong>Activity:</strong> Relax at Il Cortile Pratolino. If time permits, take a short walk in Montegonzi, a medieval settlement with historic stone buildings and valley views.</p>
-              <p class="text-gray-700"><strong>Tips:</strong> Montegonzi is small, so no major activities are planned to ensure the itinerary ends by 5:00 PM.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-lg shadow-md">
-          <button id="time-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Time Breakdown</button>
-          <div id="time-panel" class="panel-content p-4">
-            <ul class="list-disc list-inside text-gray-700">
-              <li>Driving: 1 hour 45 minutes</li>
-              <li>Greve in Chianti: 1 hour</li>
-              <li>Montefioralle: 45 minutes</li>
-              <li>Lamole (Lunch): 1 hour 30 minutes</li>
-              <li>Panzano: 1 hour</li>
-              <li>Castellina in Chianti: 1 hour</li>
-              <li>Buffer: 30 minutes (for traffic, photo stops, or delays)</li>
-              <li><strong>Total:</strong> 7 hours 30 minutes (9:30 AM – 5:00 PM)</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-lg shadow-md">
-          <button id="tips-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Additional Tips</button>
-          <div id="tips-panel" class="panel-content p-4">
-            <ul class="list-disc list-inside text-gray-700">
-              <li><strong>Driving:</strong> The SR222 and side roads are curvy; drive cautiously, especially on the narrow road to Lamole. A compact car is ideal.</li>
-              <li><strong>Parking:</strong> Most towns have parking outside the ZTL zones. Greve and Castellina have larger lots; Montefioralle and Panzano have limited spaces.</li>
-              <li><strong>What to Bring:</strong> Comfortable shoes for walking, a camera for scenic views, and cash for small shops or parking (some lots are coin-operated).</li>
-              <li><strong>Reservations:</strong> Book Ristoro di Lamole in advance (+39 055 854 7050). For wine tastings, Montefioralle Winery may accept walk-ins, but calling ahead is safer (+39 055 853 189).</li>
-              <li><strong>Seasonal Notes:</strong> In May, expect pleasant weather and blooming landscapes. Check for festivals like I Vini del Castello in Montefioralle (3rd weekend of May), which may affect parking.</li>
-              <li><strong>Fuel:</strong> Fill up in Greve (Coop supermarket area on SR222 has gas stations) if needed.</li>
-            </ul>
-          </div>
+      <!-- Itinerary Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+        <div class="itinerary-tile" data-target="itinerary-section">
+          <h3 class="text-xl font-semibold text-gray-800">Greve</h3>
+          <p class="text-gray-600">Explore Chianti’s heart from Il Cortile Pratolino</p>
         </div>
       </div>
 
-      <!-- Attendance Section -->
-      <section class="my-8">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendance</h2>
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <div class="mb-4">
-            <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
-            <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
-          </div>
-          <div class="mb-4">
-            <p class="text-gray-700 font-medium mb-2">Will you attend?</p>
-            <div class="flex space-x-4">
-              <label class="flex items-center">
-                <input type="radio" name="attending" value="yes" class="mr-2">
-                Yes
-              </label>
-              <label class="flex items-center">
-                <input type="radio" name="attending" value="no" class="mr-2">
-                No
-              </label>
+      <!-- Itinerary Section -->
+      <div id="itinerary-section">
+        <header class="text-center mb-8">
+          <h2 class="text-3xl font-bold text-gray-800">Greve</h2>
+          <p class="text-gray-600 mt-2">From Il Cortile Pratolino to Chianti’s Heart</p>
+        </header>
+
+        <!-- Expanding Panels -->
+        <div class="space-y-4">
+          <div class="bg-white rounded-lg shadow-md">
+            <button id="overview-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Itinerary Overview</button>
+            <div id="overview-panel" class="panel-content p-4">
+              <p class="text-gray-700"><strong>Start:</strong> Il Cortile Pratolino, near Montegonzi (9:30 AM)</p>
+              <p class="text-gray-700"><strong>Destinations:</strong> Greve in Chianti, Montefioralle, Lamole, Panzano, Castellina in Chianti, Montegonzi</p>
+              <p class="text-gray-700"><strong>End:</strong> Montegonzi (by 5:00 PM)</p>
+              <p class="text-gray-700"><strong>Total Driving Distance:</strong> ~60 km</p>
+              <p class="text-gray-700"><strong>Total Driving Time:</strong> ~1 hour 45 minutes</p>
+              <p class="text-gray-700"><strong>Total Time:</strong> 7 hours 30 minutes (including activities and lunch)</p>
             </div>
           </div>
-          <button id="submit-btn" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Submit</button>
-        </div>
-      </section>
 
-      <section>
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendees</h2>
-        <ul id="attendees-list" class="bg-white p-4 rounded-lg shadow-md">
-          <li class="text-gray-600">No attendees yet.</li>
-        </ul>
-      </section>
+          <div class="bg-white rounded-lg shadow-md">
+            <button id="itinerary-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Detailed Itinerary</button>
+            <div id="itinerary-panel" class="panel-content p-4">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <-member>9:30 AM – Depart to Greve in Chianti</h3>
+                <p class="text-gray-700"><strong>Drive:</strong> 15 km, ~20 minutes. From Il Cortile Pratolino, head south on local roads toward SP94. Turn right onto SP94, then left onto SR222 (Via Chiantigiana) toward Greve in Chianti. Follow SR222 for ~15 km. Park near Piazza Matteotti (try via Cesare Battisti for the large parking lot on via Rosa Libri).</p>
+                <p class="text-gray-700"><strong>Scenic Notes:</strong> The drive along SR222 offers rolling hills, vineyards, and cypress trees. Look for photo opportunities at vineyard viewpoints.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-lg font-semibold text-gray-800">9:50 AM – 10:50 AM: Greve in Chianti (1 hour)</h3>
+                <p class="text-gray-700"><strong>Activities:</strong> Stroll Piazza Matteotti, the arcaded main square, with shops selling local wines, olive oil, and crafts. Admire the statue of explorer Giovanni da Verrazzano. Visit Antica Macelleria Falorni, a historic butcher shop since 1729, for a quick tasting of Tuscan cold cuts or to buy specialties. Pop into an enoteca like Enoteca Falorni for a quick Chianti Classico tasting (5-10 minutes, no reservation needed).</p>
+                <p class="text-gray-700"><strong>Tips:</strong> Greve is Chianti’s commercial hub, so it’s lively but parking is straightforward outside the ZTL (Limited Traffic Zone). Avoid driving into the historic center.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-lg font-semibold text-gray-800">10:50 AM – Drive to Montefioralle</h3>
+                <p class="text-gray-700"><strong>Drive:</strong> 2 km, ~5 minutes. From Piazza Matteotti, take Via Roma west, following signs for Montefioralle. The road climbs uphill for ~2 km to the village. Park just outside the walls at Piazza Santo Stefano.</p>
+                <p class="text-gray-700"><strong>Scenic Notes:</strong> The short, winding road offers views of vineyards and the Greve valley.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-lg font-semibold text-gray-800">11:00 AM – 11:45 AM: Montefioralle (45 minutes)</h3>
+                <p class="text-gray-700"><strong>Activities:</strong> Wander the narrow, cobbled streets of this tiny, fortified borgo, one of Italy’s most beautiful villages. See the Church of Santo Stefano and the house of Amerigo Vespucci (marked by a wasp coat of arms). Stop at Montefioralle Winery for a quick Chianti Classico or Vin Santo tasting (10 minutes, call ahead if possible: +39 055 853 189). Capture panoramic views of the surrounding vineyards and stone houses adorned with flowers.</p>
+                <p class="text-gray-700"><strong>Tips:</strong> Montefioralle is compact, so 45 minutes is enough to explore. Avoid parking inside the village to save time.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-lg font-semibold text-gray-800">11:45 AM – Drive to Lamole</h3>
+                <p class="text-gray-700"><strong>Drive:</strong> 8 km, ~15 minutes. Return to Greve via the same road, then from Greve, follow SR222 south for ~1 km. Turn left onto Via Lamole (SP119), a narrow, winding road, and continue for ~7 km to Lamole. Park near Ristoro di Lamole (Via di Lamole, 6).</p>
+                <p class="text-gray-700"><strong>Scenic Notes:</strong> The road to Lamole is steep and curvy but stunning, with breathtaking views of Chianti Classico vineyards. Drive cautiously due to tight turns.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-lg font-semibold text-gray-800">12:15 PM – 1:45 PM: Lunch at Ristoro di Lamole (1 hour 30 minutes)</h3>
+                <p class="text-gray-700"><strong>Activity:</strong> Enjoy lunch at Ristoro di Lamole, a trattoria with a panoramic terrace overlooking vineyards. Try seasonal pastas like tagliolini with truffles or Florentine steak. Pair with a glass of Chianti Classico. Reservations are recommended (+39 055 854 7050).</p>
+                <p class="text-gray-700"><strong>Tips:</strong> The terrace is a highlight, so request an outdoor seat if weather permits. Keep lunch to 90 minutes to stay on schedule.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-lg font-semibold text-gray-800">1:45 PM – Drive to Panzano</h3>
+                <p class="text-gray-700"><strong>Drive:</strong> 6 km, ~10 minutes. Return down Via Lamole to SR222, turn left, and head south for ~6 km to Panzano. Park near the main square or Panzano Alto (upper village).</p>
+                <p class="text-gray-700"><strong>Scenic Notes:</strong> The SR222 stretch is very panoramic, with photo stops possible at vineyard pullouts.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-lg font-semibold text-gray-800">2:00 PM – 3:00 PM: Panzano (1 hour)</h3>
+                <p class="text-gray-700"><strong>Activities:</strong> Visit Antica Macelleria Cecchini, Dario Cecchini’s famous butcher shop, for a quick tasting of Tuscan meats or to see his Dante-quoting showmanship (no reservation needed for the shop). Walk to Panzano Alto to see the Castle of Panzano’s remains and the Church of Santa Maria (rebuilt in the 19th century). Enjoy views from the small square. If time allows, take a 2-minute drive south to Pieve di San Leolino, a 10th-century Romanesque church with sacred artworks (5-minute visit).</p>
+                <p class="text-gray-700"><strong>Tips:</strong> Panzano is small but charming. Focus on the butcher shop and a quick walk to stay on schedule.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-lg font-semibold text-gray-800">3:00 PM – Drive to Castellina in Chianti</h3>
+                <p class="text-gray-700"><strong>Drive:</strong> 15 km, ~20 minutes. Continue south on SR222 for ~15 km to Castellina in Chianti. Park near the main square or along Via IV Novembre.</p>
+                <p class="text-gray-700"><strong>Scenic Notes:</strong> This stretch of SR222 has tight curves but offers panoramic views of hills and vineyards.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-lg font-semibold text-gray-800">3:20 PM – 4:20 PM: Castellina in Chianti (1 hour)</h3>
+                <p class="text-gray-700"><strong>Activities:</strong> Walk Via delle Volte, a romantic, medieval stone-vaulted passageway with shops and enotecas (10-minute stroll with valley views). Visit the main square’s Rocca Fortress, now home to the Archaeological Museum of Chianti Senese, and climb the tower for panoramic views (15 minutes, €5 entry). Grab a quick gelato at Gelateria Castellina with unique flavors like ricotta and fig or cantuccini and Vin Santo (5 minutes).</p>
+                <p class="text-gray-700"><strong>Tips:</strong> Castellina is compact, so prioritize Via delle Volte and the fortress. Avoid lingering in shops to stay on time.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-lg font-semibold text-gray-800">4:20 PM – Drive to Montegonzi</h3>
+                <p class="text-gray-700"><strong>Drive:</strong> 14 km, ~20 minutes. From Castellina, take SR222 north for ~5 km, then turn right onto SP99 toward Montegonzi. Follow SP99 for ~4 km to Montegonzi, then local roads to Il Cortile Pratolino.</p>
+                <p class="text-gray-700"><strong>Scenic Notes:</strong> The route back passes through the Greve valley, with woodland paths and vineyard views.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <h3 class="text-lg font-semibold text-gray-800">4:40 PM – Arrive in Montegonzi (by 5:00 PM)</h3>
+                <p class="text-gray-700"><strong>Activity:</strong> Relax at Il Cortile Pratolino. If time permits, take a short walk in Montegonzi, a medieval settlement with historic stone buildings and valley views.</p>
+                <p class="text-gray-700"><strong>Tips:</strong> Montegonzi is small, so no major activities are planned to ensure the itinerary ends by 5:00 PM.</p>
+              </div>
+            </div>
+          </div>
 
-      <!-- Greve in Chianti Gallery -->
-      <section class="my-8">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Greve in Chianti Gallery</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div>
-            <img 
-              src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Piazza Matteotti in Greve" 
-              class="w-full h-48 object-cover rounded-lg shadow-md"
-              onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-            >
-            <p class="text-sm text-gray-600 mt-2 text-center">Piazza Matteotti in Greve</p>
+          <div class="bg-white rounded-lg shadow-md">
+            <button id="time-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Time Breakdown</button>
+            <div id="time-panel" class="panel-content p-4">
+              <ul class="list-disc list-inside text-gray-700">
+                <li>Driving: 1 hour 45 minutes</li>
+                <li>Greve in Chianti: 1 hour</li>
+                <li>Montefioralle: 45 minutes</li>
+                <li>Lamole (Lunch): 1 hour 30 minutes</li>
+                <li>Panzano: 1 hour</li>
+                <li>Castellina in Chianti: 1 hour</li>
+                <li>Buffer: 30 minutes (for traffic, photo stops, or delays)</li>
+                <li><strong>Total:</strong> 7 hours 30 minutes (9:30 AM – 5:00 PM)</li>
+              </ul>
+            </div>
           </div>
-          <div>
-            <img 
-              src="https://images.pexels.com/photos/135018/pexels-photo-135018.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Greve’s historic streets" 
-              class="w-full h-48 object-cover rounded-lg shadow-md"
-              onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-            >
-            <p class="text-sm text-gray-600 mt-2 text-center">Greve’s historic streets</p>
-          </div>
-          <div>
-            <img 
-              src="https://images.pexels.com/photos/156321/pexels-photo-156321.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Vineyards near Greve" 
-              class="w-full h-48 object-cover rounded-lg shadow-md"
-              onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-            >
-            <p class="text-sm text-gray-600 mt-2 text-center">Vineyards near Greve</p>
-          </div>
-          <div>
-            <img 
-              src="https://images.pexels.com/photos/747418/pexels-photo-747418.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Tuscan countryside near Greve" 
-              class="w-full h-48 object-cover rounded-lg shadow-md"
-              onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-            >
-            <p class="text-sm text-gray-600 mt-2 text-center">Tuscan countryside near Greve</p>
-          </div>
-          <div>
-            <img 
-              src="https://images.pexels.com/photos/5409751/pexels-photo-5409751.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Greve valley landscape" 
-              class="w-full h-48 object-cover rounded-lg shadow-md"
-              onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-            >
-            <p class="text-sm text-gray-600 mt-2 text-center">Greve valley landscape</p>
-          </div>
-          <div>
-            <img 
-              src="https://images.pexels.com/photos/2086030/pexels-photo-2086030.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Chianti vineyards near Greve" 
-              class="w-full h-48 object-cover rounded-lg shadow-md"
-              onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-            >
-            <p class="text-sm text-gray-600 mt-2 text-center">Chianti vineyards near Greve</p>
-          </div>
-          <div>
-            <img 
-              src="https://images.pexels.com/photos/1269968/pexels-photo-1269968.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Greve’s rolling hills" 
-              class="w-full h-48 object-cover rounded-lg shadow-md"
-              onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-            >
-            <p class="text-sm text-gray-600 mt-2 text-center">Greve’s rolling hills</p>
-          </div>
-          <div>
-            <img 
-              src="https://images.pexels.com/photos/20832069/pexels-photo-20832069.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Historic Greve village" 
-              class="w-full h-48 object-cover rounded-lg shadow-md"
-              onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-            >
-            <p class="text-sm text-gray-600 mt-2 text-center">Historic Greve village</p>
-          </div>
-          <div>
-            <img 
-              src="https://images.pexels.com/photos/46148/pexels-photo-46148.jpeg?auto=compress&cs=tinysrgb&w=800" 
-              alt="Tuscan stone buildings in Greve" 
-              class="w-full h-48 object-cover rounded-lg shadow-md"
-              onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-            >
-            <p class="text-sm text-gray-600 mt-2 text-center">Tuscan stone buildings in Greve</p>
+
+          <div class="bg-white rounded-lg shadow-md">
+            <button id="tips-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Additional Tips</button>
+            <div id="tips-panel" class="panel-content p-4">
+              <ul class="list-disc list-inside text-gray-700">
+                <li><strong>Driving:</strong> The SR222 and side roads are curvy; drive cautiously, especially on the narrow road to Lamole. A compact car is ideal.</li>
+                <li><strong>Parking:</strong> Most towns have parking outside the ZTL zones. Greve and Castellina have larger lots; Montefioralle and Panzano have limited spaces.</li>
+                <li><strong>What to Bring:</strong> Comfortable shoes for walking, a camera for scenic views, and cash for small shops or parking (some lots are coin-operated).</li>
+                <li><strong>Reservations:</strong> Book Ristoro di Lamole in advance (+39 055 854 7050). For wine tastings, Montefioralle Winery may accept walk-ins, but calling ahead is safer (+39 055 853 189).</li>
+                <li><strong>Seasonal Notes:</strong> In May, expect pleasant weather and blooming landscapes. Check for festivals like I Vini del Castello in Montefioralle (3rd weekend of May), which may affect parking.</li>
+                <li><strong>Fuel:</strong> Fill up in Greve (Coop supermarket area on SR222 has gas stations) if needed.</li>
+              </ul>
+            </div>
           </div>
         </div>
-      </section>
+
+        <!-- Attendance Section -->
+        <section class="my-8">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendance</h2>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div class="mb-4">
+              <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
+              <input type="text" id="name" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
+            </div>
+            <div class="mb-4">
+              <p class="text-gray-700 font-medium mb-2">Will you attend?</p>
+              <div class="flex space-x-4">
+                <label class="flex items-center">
+                  <input type="radio" name="attending" value="yes" class="mr-2">
+                  Yes
+                </label>
+                <label class="flex items-center">
+                  <input type="radio" name="attending" value="no" class="mr-2">
+                  No
+                </label>
+              </div>
+            </div>
+            <button id="submit-btn" class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled>Submit</button>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Attendees</h2>
+          <ul id="attendees-list" class="bg-white p-4 rounded-lg shadow-md">
+            <li class="text-gray-600">No attendees yet.</li>
+          </ul>
+        </section>
+
+        <!-- Greve in Chianti Gallery -->
+        <section class="my-8">
+          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Greve in Chianti Gallery</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Piazza Matteotti in Greve" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Piazza Matteotti in Greve</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/135018/pexels-photo-135018.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Greve’s historic streets" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Greve’s historic streets</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/156321/pexels-photo-156321.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Vineyards near Greve" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Vineyards near Greve</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/747418/pexels-photo-747418.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Tuscan countryside near Greve" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Tuscan countryside near Greve</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/5409751/pexels-photo-5409751.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Greve valley landscape" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Greve valley landscape</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/2086030/pexels-photo-2086030.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Chianti vineyards near Greve" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Chianti vineyards near Greve</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/1269968/pexels-photo-1269968.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Greve’s rolling hills" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Greve’s rolling hills</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/20832069/pexels-photo-20832069.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Historic Greve village" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Historic Greve village</p>
+            </div>
+            <div>
+              <img 
+                src="https://images.pexels.com/photos/46148/pexels-photo-46148.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                alt="Tuscan stone buildings in Greve" 
+                class="w-full h-48 object-cover rounded-lg shadow-md"
+                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+              >
+              <p class="text-sm text-gray-600 mt-2 text-center">Tuscan stone buildings in Greve</p>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
 
     <!-- Map Tab -->
@@ -515,6 +542,18 @@
         } else {
           bottomBar.classList.add('hidden');
         }
+      });
+
+      // Itinerary Tile Navigation
+      const itineraryTiles = document.querySelectorAll('.itinerary-tile');
+      itineraryTiles.forEach(tile => {
+        tile.addEventListener('click', () => {
+          const targetId = tile.getAttribute('data-target');
+          const targetSection = document.getElementById(targetId);
+          if (targetSection) {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
       });
 
       // Expanding Panels
