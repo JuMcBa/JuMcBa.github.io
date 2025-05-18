@@ -49,11 +49,12 @@
       border-radius: 50%;
     }
     .landing-bg {
-      background-image: url('https://www.shutterstock.com/shutterstock/photos/2373587937/display_1500/stock-photo-aerial-view-of-florence-cathedral-duomo-di-firenze-cathedral-of-saint-mary-of-the-flower-sunset-2373587937.jpg');
-      background-size: cover;
-      background-position: center;
+      background-image: url('https://www.moravian.edu/sites/default/files/2023-04/Florence%20Header.png');
+      background-size: 100% auto;
+      background-position: center top;
       background-repeat: no-repeat;
-      min-height: 100vh;
+      width: 100%;
+      min-height: 60vw; /* Approximate 1440x600 aspect ratio */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -136,6 +137,43 @@
     .itinerary-tile:hover {
       transform: scale(1.02);
     }
+    /* Modal Styles */
+    #itinerary-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      overflow-y: auto;
+    }
+    #itinerary-modal-content {
+      background-color: white;
+      margin: 5% auto;
+      padding: 1.5rem;
+      width: 90%;
+      max-width: 800px;
+      border-radius: 0.5rem;
+      position: relative;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    #modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 0.25rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+    #modal-close:hover {
+      background-color: #dc2626;
+    }
   </style>
 </head>
 <body class="bg-gray-100 font-sans">
@@ -150,11 +188,19 @@
     </select>
   </div>
 
+  <!-- Modal for Itinerary Sections -->
+  <div id="itinerary-modal">
+    <div id="itinerary-modal-content">
+      <button id="modal-close">Close</button>
+      <div id="modal-content-body"></div>
+    </div>
+  </div>
+
   <!-- Landing Page -->
   <div id="landing-page" class="tab-content active">
     <div class="landing-bg">
       <img 
-        src="https://www.shutterstock.com/shutterstock/photos/2373587937/display_1500/stock-photo-aerial-view-of-florence-cathedral-duomo-di-firenze-cathedral-of-saint-mary-of-the-flower-sunset-2373587937.jpg" 
+        src="https://www.moravian.edu/sites/default/files/2023-04/Florence%20Header.png" 
         alt="Tuscany Landscape Fallback" 
         class="fallback"
         onerror="this.src='https://via.placeholder.com/800x600?text=Tuscany+Image+Failed'"
@@ -192,7 +238,7 @@
         </div>
       </div>
 
-      <!-- Itinerary Sections -->
+      <!-- Itinerary Sections (Hidden, used for modal content) -->
       <div id="itinerary-section-greve" class="hidden">
         <header class="text-center mb-8">
           <h2 class="text-3xl font-bold text-gray-800">Greve</h2>
@@ -223,6 +269,8 @@
                 <div class="timeline-dot"></div>
                 <h3 class="text-lg font-semibold text-gray-800">9:50 AM – 10:50 AM: Greve in Chianti (1 hour)</h3>
                 <p class="text-gray-700"><strong>Activities:</strong> Stroll Piazza Matteotti, the arcaded main square, with shops selling local wines, olive oil, and crafts. Admire the statue of explorer Giovanni da Verrazzano. Visit Antica Macelleria Falorni, a historic butcher shop since 1729, for a quick tasting of Tuscan cold cuts or to buy specialties. Pop into an enoteca like Enoteca Falorni for a quick Chianti Classico tasting (5-10 minutes, no reservation needed).</p>
+                <p class="text-gray-700"><strong>Tips:</strong> Greve is Chianti’s commercial hub, so it’s lively but parking is straightforward outside the ZTL (Limited Traffic Zone). Avoid driving into the historic center.</p>
+              </div>
               <div class="timeline-item">
                 <div class="timeline-dot"></div>
                 <h3 class="text-lg font-semibold text-gray-800">10:50 AM – Drive to Montefioralle</h3>
@@ -313,304 +361,304 @@
               </ul>
             </div>
           </div>
+          <section class="my-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Greve in Chianti Gallery</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <img 
+                  src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Piazza Matteotti in Greve" 
+                  class="w-full h-48 object-cover rounded-lg shadow-md"
+                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+                >
+                <p class="text-sm text-gray-600 mt-2 text-center">Piazza Matteotti in Greve</p>
+              </div>
+              <div>
+                <img 
+                  src="https://images.pexels.com/photos/135018/pexels-photo-135018.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Greve’s historic streets" 
+                  class="w-full h-48 object-cover rounded-lg shadow-md"
+                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+                >
+                <p class="text-sm text-gray-600 mt-2 text-center">Greve’s historic streets</p>
+              </div>
+              <div>
+                <img 
+                  src="https://images.pexels.com/photos/156321/pexels-photo-156321.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Vineyards near Greve" 
+                  class="w-full h-48 object-cover rounded-lg shadow-md"
+                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+                >
+                <p class="text-sm text-gray-600 mt-2 text-center">Vineyards near Greve</p>
+              </div>
+              <div>
+                <img 
+                  src="https://images.pexels.com/photos/747418/pexels-photo-747418.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Tuscan countryside near Greve" 
+                  class="w-full h-48 object-cover rounded-lg shadow-md"
+                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+                >
+                <p class="text-sm text-gray-600 mt-2 text-center">Tuscan countryside near Greve</p>
+              </div>
+              <div>
+                <img 
+                  src="https://images.pexels.com/photos/5409751/pexels-photo-5409751.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Greve valley landscape" 
+                  class="w-full h-48 object-cover rounded-lg shadow-md"
+                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+                >
+                <p class="text-sm text-gray-600 mt-2 text-center">Greve valley landscape</p>
+              </div>
+              <div>
+                <img 
+                  src="https://images.pexels.com/photos/2086030/pexels-photo-2086030.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Chianti vineyards near Greve" 
+                  class="w-full h-48 object-cover rounded-lg shadow-md"
+                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+                >
+                <p class="text-sm text-gray-600 mt-2 text-center">Chianti vineyards near Greve</p>
+              </div>
+              <div>
+                <img 
+                  src="https://images.pexels.com/photos/1269968/pexels-photo-1269968.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Greve’s rolling hills" 
+                  class="w-full h-48 object-cover rounded-lg shadow-md"
+                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+                >
+                <p class="text-sm text-gray-600 mt-2 text-center">Greve’s rolling hills</p>
+              </div>
+              <div>
+                <img 
+                  src="https://images.pexels.com/photos/20832069/pexels-photo-20832069.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Historic Greve village" 
+                  class="w-full h-48 object-cover rounded-lg shadow-md"
+                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+                >
+                <p class="text-sm text-gray-600 mt-2 text-center">Historic Greve village</p>
+              </div>
+              <div>
+                <img 
+                  src="https://images.pexels.com/photos/46148/pexels-photo-46148.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                  alt="Tuscan stone buildings in Greve" 
+                  class="w-full h-48 object-cover rounded-lg shadow-md"
+                  onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
+                >
+                <p class="text-sm text-gray-600 mt-2 text-center">Tuscan stone buildings in Greve</p>
+              </div>
+            </div>
+          </section>
         </div>
-        <section class="my-8">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-4">Greve in Chianti Gallery</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div>
-              <img 
-                src="https://images.pexels.com/photos/1285625/pexels-photo-1285625.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Piazza Matteotti in Greve" 
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-              >
-              <p class="text-sm text-gray-600 mt-2 text-center">Piazza Matteotti in Greve</p>
-            </div>
-            <div>
-              <img 
-                src="https://images.pexels.com/photos/135018/pexels-photo-135018.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Greve’s historic streets" 
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-              >
-              <p class="text-sm text-gray-600 mt-2 text-center">Greve’s historic streets</p>
-            </div>
-            <div>
-              <img 
-                src="https://images.pexels.com/photos/156321/pexels-photo-156321.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Vineyards near Greve" 
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-              >
-              <p class="text-sm text-gray-600 mt-2 text-center">Vineyards near Greve</p>
-            </div>
-            <div>
-              <img 
-                src="https://images.pexels.com/photos/747418/pexels-photo-747418.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Tuscan countryside near Greve" 
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-              >
-              <p class="text-sm text-gray-600 mt-2 text-center">Tuscan countryside near Greve</p>
-            </div>
-            <div>
-              <img 
-                src="https://images.pexels.com/photos/5409751/pexels-photo-5409751.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Greve valley landscape" 
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-              >
-              <p class="text-sm text-gray-600 mt-2 text-center">Greve valley landscape</p>
-            </div>
-            <div>
-              <img 
-                src="https://images.pexels.com/photos/2086030/pexels-photo-2086030.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Chianti vineyards near Greve" 
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-              >
-              <p class="text-sm text-gray-600 mt-2 text-center">Chianti vineyards near Greve</p>
-            </div>
-            <div>
-              <img 
-                src="https://images.pexels.com/photos/1269968/pexels-photo-1269968.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Greve’s rolling hills" 
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-              >
-              <p class="text-sm text-gray-600 mt-2 text-center">Greve’s rolling hills</p>
-            </div>
-            <div>
-              <img 
-                src="https://images.pexels.com/photos/20832069/pexels-photo-20832069.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Historic Greve village" 
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-              >
-              <p class="text-sm text-gray-600 mt-2 text-center">Historic Greve village</p>
-            </div>
-            <div>
-              <img 
-                src="https://images.pexels.com/photos/46148/pexels-photo-46148.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Tuscan stone buildings in Greve" 
-                class="w-full h-48 object-cover rounded-lg shadow-md"
-                onerror="this.src='https://via.placeholder.com/800x600?text=Greve+Image+Failed'"
-              >
-              <p class="text-sm text-gray-600 mt-2 text-center">Tuscan stone buildings in Greve</p>
-            </div>
-          </div>
-        </section>
-      </div>
 
-      <div id="itinerary-section-panzano" class="hidden">
-        <header class="text-center mb-8">
-          <h2 class="text-3xl font-bold text-gray-800">Panzano</h2>
-          <p class="text-gray-600 mt-2">Savor the charm of Panzano’s vineyards and cuisine</p>
-        </header>
-        <div class="space-y-4">
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="overview-panel-btn-panzano" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Itinerary Overview</button>
-            <div id="overview-panel-panzano" class="panel-content p-4">
-              <p class="text-gray-700"><strong>Start:</strong> Il Cortile Pratolino (9:00 AM)</p>
-              <p class="text-gray-700"><strong>Destinations:</strong> Panzano, local vineyards, historic sites</p>
-              <p class="text-gray-700"><strong>End:</strong> Il Cortile Pratolino (by 4:00 PM)</p>
-              <p class="text-gray-700"><strong>Total Driving Distance:</strong> ~40 km</p>
-              <p class="text-gray-700"><strong>Total Driving Time:</strong> ~1 hour</p>
-              <p class="text-gray-700"><strong>Total Time:</strong> 7 hours (including activities and lunch)</p>
-            </div>
-          </div>
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="itinerary-panel-btn-panzano" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Detailed Itinerary</button>
-            <div id="itinerary-panel-panzano" class="panel-content p-4">
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <h3 class="text-lg font-semibold text-gray-800">9:00 AM – Depart to Panzano</h3>
-                <p class="text-gray-700"><strong>Drive:</strong> 20 km, ~30 minutes. Head south on SR222 to Panzano.</p>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <h3 class="text-lg font-semibold text-gray-800">9:30 AM – 11:30 AM: Explore Panzano (2 hours)</h3>
-                <p class="text-gray-700"><strong>Activities:</strong> Visit local markets and enjoy a wine tasting at a nearby vineyard.</p>
+        <div id="itinerary-section-panzano" class="hidden">
+          <header class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-800">Panzano</h2>
+            <p class="text-gray-600 mt-2">Savor the charm of Panzano’s vineyards and cuisine</p>
+          </header>
+          <div class="space-y-4">
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="overview-panel-btn-panzano" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Itinerary Overview</button>
+              <div id="overview-panel-panzano" class="panel-content p-4">
+                <p class="text-gray-700"><strong>Start:</strong> Il Cortile Pratolino (9:00 AM)</p>
+                <p class="text-gray-700"><strong>Destinations:</strong> Panzano, local vineyards, historic sites</p>
+                <p class="text-gray-700"><strong>End:</strong> Il Cortile Pratolino (by 4:00 PM)</p>
+                <p class="text-gray-700"><strong>Total Driving Distance:</strong> ~40 km</p>
+                <p class="text-gray-700"><strong>Total Driving Time:</strong> ~1 hour</p>
+                <p class="text-gray-700"><strong>Total Time:</strong> 7 hours (including activities and lunch)</p>
               </div>
             </div>
-          </div>
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="time-panel-btn-panzano" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Time Breakdown</button>
-            <div id="time-panel-panzano" class="panel-content p-4">
-              <ul class="list-disc list-inside text-gray-700">
-                <li>Driving: 1 hour</li>
-                <li>Panzano Exploration: 2 hours</li>
-                <li>Lunch: 2 hours</li>
-                <li><strong>Total:</strong> 7 hours</li>
-              </ul>
-            </div>
-          </div>
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="tips-panel-btn-panzano" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Additional Tips</button>
-            <div id="tips-panel-panzano" class="panel-content p-4">
-              <ul class="list-disc list-inside text-gray-700">
-                <li><strong>Driving:</strong> Watch for narrow roads.</li>
-                <li><strong>Parking:</strong> Use lots outside the town center.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="itinerary-section-castellina" class="hidden">
-        <header class="text-center mb-8">
-          <h2 class="text-3xl font-bold text-gray-800">Castellina</h2>
-          <p class="text-gray-600 mt-2">Explore medieval Castellina’s history and views</p>
-        </header>
-        <div class="space-y-4">
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="overview-panel-btn-castellina" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Itinerary Overview</button>
-            <div id="overview-panel-castellina" class="panel-content p-4">
-              <p class="text-gray-700"><strong>Start:</strong> Il Cortile Pratolino (8:30 AM)</p>
-              <p class="text-gray-700"><strong>Destinations:</strong> Castellina, local museums, scenic viewpoints</p>
-              <p class="text-gray-700"><strong>End:</strong> Il Cortile Pratolino (by 3:30 PM)</p>
-              <p class="text-gray-700"><strong>Total Driving Distance:</strong> ~50 km</p>
-              <p class="text-gray-700"><strong>Total Driving Time:</strong> ~1 hour 15 minutes</p>
-              <p class="text-gray-700"><strong>Total Time:</strong> 7 hours (including activities and lunch)</p>
-            </div>
-          </div>
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="itinerary-panel-btn-castellina" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Detailed Itinerary</button>
-            <div id="itinerary-panel-castellina" class="panel-content p-4">
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <h3 class="text-lg font-semibold text-gray-800">8:30 AM – Depart to Castellina</h3>
-                <p class="text-gray-700"><strong>Drive:</strong> 25 km, ~35 minutes. Head south on SR222 to Castellina.</p>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <h3 class="text-lg font-semibold text-gray-800">9:05 AM – 11:05 AM: Explore Castellina (2 hours)</h3>
-                <p class="text-gray-700"><strong>Activities:</strong> Visit the Rocca Fortress and enjoy a local museum tour.</p>
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="itinerary-panel-btn-panzano" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Detailed Itinerary</button>
+              <div id="itinerary-panel-panzano" class="panel-content p-4">
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <h3 class="text-lg font-semibold text-gray-800">9:00 AM – Depart to Panzano</h3>
+                  <p class="text-gray-700"><strong>Drive:</strong> 20 km, ~30 minutes. Head south on SR222 to Panzano.</p>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <h3 class="text-lg font-semibold text-gray-800">9:30 AM – 11:30 AM: Explore Panzano (2 hours)</h3>
+                  <p class="text-gray-700"><strong>Activities:</strong> Visit local markets and enjoy a wine tasting at a nearby vineyard.</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="time-panel-btn-castellina" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Time Breakdown</button>
-            <div id="time-panel-castellina" class="panel-content p-4">
-              <ul class="list-disc list-inside text-gray-700">
-                <li>Driving: 1 hour 15 minutes</li>
-                <li>Castellina Exploration: 2 hours</li>
-                <li>Lunch: 2 hours</li>
-                <li><strong>Total:</strong> 7 hours</li>
-              </ul>
-            </div>
-          </div>
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="tips-panel-btn-castellina" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Additional Tips</button>
-            <div id="tips-panel-castellina" class="panel-content p-4">
-              <ul class="list-disc list-inside text-gray-700">
-                <li><strong>Driving:</strong> Be cautious on curvy roads.</li>
-                <li><strong>Parking:</strong> Park near the main square.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="itinerary-section-montefioralle" class="hidden">
-        <header class="text-center mb-8">
-          <h2 class="text-3xl font-bold text-gray-800">Montefioralle</h2>
-          <p class="text-gray-600 mt-2">Wander the picturesque village of Montefioralle</p>
-        </header>
-        <div class="space-y-4">
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="overview-panel-btn-montefioralle" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Itinerary Overview</button>
-            <div id="overview-panel-montefioralle" class="panel-content p-4">
-              <p class="text-gray-700"><strong>Start:</strong> Il Cortile Pratolino (10:00 AM)</p>
-              <p class="text-gray-700"><strong>Destinations:</strong> Montefioralle, local trails, wineries</p>
-              <p class="text-gray-700"><strong>End:</strong> Il Cortile Pratolino (by 5:00 PM)</p>
-              <p class="text-gray-700"><strong>Total Driving Distance:</strong> ~30 km</p>
-              <p class="text-gray-700"><strong>Total Driving Time:</strong> ~45 minutes</p>
-              <p class="text-gray-700"><strong>Total Time:</strong> 7 hours (including activities and lunch)</p>
-            </div>
-          </div>
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="itinerary-panel-btn-montefioralle" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Detailed Itinerary</button>
-            <div id="itinerary-panel-montefioralle" class="panel-content p-4">
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <h3 class="text-lg font-semibold text-gray-800">10:00 AM – Depart to Montefioralle</h3>
-                <p class="text-gray-700"><strong>Drive:</strong> 15 km, ~20 minutes. Head west to Montefioralle.</p>
-              </div>
-              <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <h3 class="text-lg font-semibold text-gray-800">10:20 AM – 12:20 PM: Explore Montefioralle (2 hours)</h3>
-                <p class="text-gray-700"><strong>Activities:</strong> Stroll through the village and visit a local winery.</p>
-              </div>
-            </div>
-          </div>
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="time-panel-btn-montefioralle" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Time Breakdown</button>
-            <div id="time-panel-montefioralle" class="panel-content p-4">
-              <ul class="list-disc list-inside text-gray-700">
-                <li>Driving: 45 minutes</li>
-                <li>Montefioralle Exploration: 2 hours</li>
-                <li>Lunch: 2 hours</li>
-                <li><strong>Total:</strong> 7 hours</li>
-              </ul>
-            </div>
-          </div>
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="tips-panel-btn-montefioralle" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Additional Tips</button>
-            <div id="tips-panel-montefioralle" class="panel-content p-4">
-              <ul class="list-disc list-inside text-gray-700">
-                <li><strong>Driving:</strong> Narrow roads require careful driving.</li>
-                <li><strong>Parking:</strong> Limited spaces; park outside the village.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- General Information Section -->
-      <div id="general-info-section">
-        <header class="text-center mb-8">
-          <h2 class="text-3xl font-bold text-gray-800">General Information</h2>
-          <p class="text-gray-600 mt-2">Trip-wide details and activities</p>
-        </header>
-        <div class="space-y-4">
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="dinner-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Dinner Plans</button>
-            <div id="dinner-panel" class="panel-content p-4">
-              <ul class="list-disc list-inside text-gray-700">
-                <li>Dinner for all for six nights (every night except Tuesday).</li>
-                <li><strong>Thursday Night (June 19):</strong> Pizza dinner at the normal cost of a menu, with pizzas made on trays by the staff in the villa kitchen, as is common with Italian families. We had considered a pizza truck but opted for this alternative.</li>
-                <li><strong>Other Nights:</strong> The chef will decide the sequence of our menu selections:</li>
-                <ul class="list-disc list-inside ml-4">
-                  <li>Lavanda: Two adult Veggies, rest Traditional Tuscan</li>
-                  <li>Peoria: Two adult Veggies, rest Traditional Tuscan</li>
-                  <li>Timo: Two adult Veggies, rest Traditional Tuscan</li>
-                  <li>Rosa: Two adult Veggies, rest Traditional Tuscan</li>
-                  <li>Bouganville: All Traditional Tuscan</li>
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="time-panel-btn-panzano" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Time Breakdown</button>
+              <div id="time-panel-panzano" class="panel-content p-4">
+                <ul class="list-disc list-inside text-gray-700">
+                  <li>Driving: 1 hour</li>
+                  <li>Panzano Exploration: 2 hours</li>
+                  <li>Lunch: 2 hours</li>
+                  <li><strong>Total:</strong> 7 hours</li>
                 </ul>
-              </ul>
+              </div>
             </div>
-          </div>
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="activities-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Scheduled Activities</button>
-            <div id="activities-panel" class="panel-content p-4">
-              <ul class="list-disc list-inside text-gray-700">
-                <li>Several activities scheduled via TN&M’s local coordinator:</li>
-                <ul class="list-disc list-inside ml-4">
-                  <li><strong>Wine Tasting:</strong> 5:30 PM on Monday, June 16, for Roger, Beverly, Jim, and Linda. A sommelier from nearby La Lappe will conduct the tasting, offering tips about wines and wineries of particular interest.</li>
-                  <li><strong>Tennis:</strong> 1-hour session at a nearby court for Matt and person TBD at 10:30 AM on Monday, June 16 (time confirmation pending).</li>
-                  <li><strong>Horseback Riding:</strong> 10:30 AM on Thursday, June 19, for Roger, Melissa, Jim, and Linda (time confirmation pending).</li>
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="tips-panel-btn-panzano" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Additional Tips</button>
+              <div id="tips-panel-panzano" class="panel-content p-4">
+                <ul class="list-disc list-inside text-gray-700">
+                  <li><strong>Driving:</strong> Watch for narrow roads.</li>
+                  <li><strong>Parking:</strong> Use lots outside the town center.</li>
                 </ul>
-              </ul>
+              </div>
             </div>
           </div>
-          <div class="bg-white rounded-lg shadow-md">
-            <button id="timing-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Timing Considerations</button>
-            <div id="timing-panel" class="panel-content p-4">
-              <ul class="list-disc list-inside text-gray-700">
-                <li><strong>Check-in:</strong> 4:00 PM on Saturday, June 14. Bev and Roger will be there at that time.</li>
-                <li><strong>Check-out:</strong> 10:00 AM on the following Saturday, June 21.</li>
-              </ul>
+        </div>
+
+        <div id="itinerary-section-castellina" class="hidden">
+          <header class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-800">Castellina</h2>
+            <p class="text-gray-600 mt-2">Explore medieval Castellina’s history and views</p>
+          </header>
+          <div class="space-y-4">
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="overview-panel-btn-castellina" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Itinerary Overview</button>
+              <div id="overview-panel-castellina" class="panel-content p-4">
+                <p class="text-gray-700"><strong>Start:</strong> Il Cortile Pratolino (8:30 AM)</p>
+                <p class="text-gray-700"><strong>Destinations:</strong> Castellina, local museums, scenic viewpoints</p>
+                <p class="text-gray-700"><strong>End:</strong> Il Cortile Pratolino (by 3:30 PM)</p>
+                <p class="text-gray-700"><strong>Total Driving Distance:</strong> ~50 km</p>
+                <p class="text-gray-700"><strong>Total Driving Time:</strong> ~1 hour 15 minutes</p>
+                <p class="text-gray-700"><strong>Total Time:</strong> 7 hours (including activities and lunch)</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="itinerary-panel-btn-castellina" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Detailed Itinerary</button>
+              <div id="itinerary-panel-castellina" class="panel-content p-4">
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <h3 class="text-lg font-semibold text-gray-800">8:30 AM – Depart to Castellina</h3>
+                  <p class="text-gray-700"><strong>Drive:</strong> 25 km, ~35 minutes. Head south on SR222 to Castellina.</p>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <h3 class="text-lg font-semibold text-gray-800">9:05 AM – 11:05 AM: Explore Castellina (2 hours)</h3>
+                  <p class="text-gray-700"><strong>Activities:</strong> Visit the Rocca Fortress and enjoy a local museum tour.</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="time-panel-btn-castellina" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Time Breakdown</button>
+              <div id="time-panel-castellina" class="panel-content p-4">
+                <ul class="list-disc list-inside text-gray-700">
+                  <li>Driving: 1 hour 15 minutes</li>
+                  <li>Castellina Exploration: 2 hours</li>
+                  <li>Lunch: 2 hours</li>
+                  <li><strong>Total:</strong> 7 hours</li>
+                </ul>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="tips-panel-btn-castellina" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Additional Tips</button>
+              <div id="tips-panel-castellina" class="panel-content p-4">
+                <ul class="list-disc list-inside text-gray-700">
+                  <li><strong>Driving:</strong> Be cautious on curvy roads.</li>
+                  <li><strong>Parking:</strong> Park near the main square.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="itinerary-section-montefioralle" class="hidden">
+          <header class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-800">Montefioralle</h2>
+            <p class="text-gray-600 mt-2">Wander the picturesque village of Montefioralle</p>
+          </header>
+          <div class="space-y-4">
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="overview-panel-btn-montefioralle" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Itinerary Overview</button>
+              <div id="overview-panel-montefioralle" class="panel-content p-4">
+                <p class="text-gray-700"><strong>Start:</strong> Il Cortile Pratolino (10:00 AM)</p>
+                <p class="text-gray-700"><strong>Destinations:</strong> Montefioralle, local trails, wineries</p>
+                <p class="text-gray-700"><strong>End:</strong> Il Cortile Pratolino (by 5:00 PM)</p>
+                <p class="text-gray-700"><strong>Total Driving Distance:</strong> ~30 km</p>
+                <p class="text-gray-700"><strong>Total Driving Time:</strong> ~45 minutes</p>
+                <p class="text-gray-700"><strong>Total Time:</strong> 7 hours (including activities and lunch)</p>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="itinerary-panel-btn-montefioralle" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Detailed Itinerary</button>
+              <div id="itinerary-panel-montefioralle" class="panel-content p-4">
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <h3 class="text-lg font-semibold text-gray-800">10:00 AM – Depart to Montefioralle</h3>
+                  <p class="text-gray-700"><strong>Drive:</strong> 15 km, ~20 minutes. Head west to Montefioralle.</p>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot"></div>
+                  <h3 class="text-lg font-semibold text-gray-800">10:20 AM – 12:20 PM: Explore Montefioralle (2 hours)</h3>
+                  <p class="text-gray-700"><strong>Activities:</strong> Stroll through the village and visit a local winery.</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="time-panel-btn-montefioralle" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Time Breakdown</button>
+              <div id="time-panel-montefioralle" class="panel-content p-4">
+                <ul class="list-disc list-inside text-gray-700">
+                  <li>Driving: 45 minutes</li>
+                  <li>Montefioralle Exploration: 2 hours</li>
+                  <li>Lunch: 2 hours</li>
+                  <li><strong>Total:</strong> 7 hours</li>
+                </ul>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="tips-panel-btn-montefioralle" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Additional Tips</button>
+              <div id="tips-panel-montefioralle" class="panel-content p-4">
+                <ul class="list-disc list-inside text-gray-700">
+                  <li><strong>Driving:</strong> Narrow roads require careful driving.</li>
+                  <li><strong>Parking:</strong> Limited spaces; park outside the village.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- General Information Section -->
+        <div id="general-info-section">
+          <header class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-gray-800">General Information</h2>
+            <p class="text-gray-600 mt-2">Trip-wide details and activities</p>
+          </header>
+          <div class="space-y-4">
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="dinner-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Dinner Plans</button>
+              <div id="dinner-panel" class="panel-content p-4">
+                <ul class="list-disc list-inside text-gray-700">
+                  <li>Dinner for all for six nights (every night except Tuesday).</li>
+                  <li><strong>Thursday Night (June 19):</strong> Pizza dinner at the normal cost of a menu, with pizzas made on trays by the staff in the villa kitchen, as is common with Italian families. We had considered a pizza truck but opted for this alternative.</li>
+                  <li><strong>Other Nights:</strong> The chef will decide the sequence of our menu selections:</li>
+                  <ul class="list-disc list-inside ml-4">
+                    <li>Lavanda: Two adult Veggies, rest Traditional Tuscan</li>
+                    <li>Peoria: Two adult Veggies, rest Traditional Tuscan</li>
+                    <li>Timo: Two adult Veggies, rest Traditional Tuscan</li>
+                    <li>Rosa: Two adult Veggies, rest Traditional Tuscan</li>
+                    <li>Bouganville: All Traditional Tuscan</li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="activities-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Scheduled Activities</button>
+              <div id="activities-panel" class="panel-content p-4">
+                <ul class="list-disc list-inside text-gray-700">
+                  <li>Several activities scheduled via TN&M’s local coordinator:</li>
+                  <ul class="list-disc list-inside ml-4">
+                    <li><strong>Wine Tasting:</strong> 5:30 PM on Monday, June 16, for Roger, Beverly, Jim, and Linda. A sommelier from nearby La Lappe will conduct the tasting, offering tips about wines and wineries of particular interest.</li>
+                    <li><strong>Tennis:</strong> 1-hour session at a nearby court for Matt and person TBD at 10:30 AM on Monday, June 16 (time confirmation pending).</li>
+                    <li><strong>Horseback Riding:</strong> 10:30 AM on Thursday, June 19, for Roger, Melissa, Jim, and Linda (time confirmation pending).</li>
+                  </ul>
+                </ul>
+              </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-md">
+              <button id="timing-panel-btn" class="w-full text-left p-4 text-lg font-semibold text-gray-800 bg-gray-50 hover:bg-gray-100 focus:outline-none">Timing Considerations</button>
+              <div id="timing-panel" class="panel-content p-4">
+                <ul class="list-disc list-inside text-gray-700">
+                  <li><strong>Check-in:</strong> 4:00 PM on Saturday, June 14. Bev and Roger will be there at that time.</li>
+                  <li><strong>Check-out:</strong> 10:00 AM on the following Saturday, June 21.</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -636,7 +684,7 @@
       </p>
       <iframe 
         class="w-full h-96 rounded-lg shadow-md" 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.843483974592!2d11.252497315509693!3d43.78035097911706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a56a680d2d6ad%3A0x93d57903d7db7b79!2sPiazza%20della%20Signoria%2C%2050122%20Firenze%20FI%2C%20Italy!5e0!3m2!1sen!2us!4v1697584321098!5m2!1sen!2us&destination=Il+Cortile+Pratolino%2C+Via+della+Lastruccia%2C+50036+Pratolino+FI%2C+Italy" 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2877.843483974592!2d11.252497315509693!3d43.78035097911706!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132a56a680d2d6ad%3A0x93d57903d7db7b79!2sPiazza%20della%20Signoria%2C%2050122%20Firenze%20FI%2C%20Italy!5e0!3m2!1sen!2sus!4v1697584321098!5m2!1sen!2sus&destination=Il+Cortile+Pratolino%2C+Via+della+Lastruccia%2C+50036+Pratolino+FI%2C+Italy" 
         allowfullscreen="" 
         loading="lazy"
       ></iframe>
@@ -695,6 +743,9 @@
       const tabContents = document.querySelectorAll('.tab-content');
       const landingPage = document.getElementById('landing-page');
       const mainContent = document.getElementById('main-content');
+      const modal = document.getElementById('itinerary-modal');
+      const modalContentBody = document.getElementById('modal-content-body');
+      const modalClose = document.getElementById('modal-close');
 
       function navigateTo(tab) {
         tabContents.forEach(c => c.classList.remove('active'));
@@ -702,19 +753,17 @@
           landingPage.classList.add('active');
           mainContent.classList.add('hidden');
           navDropdown.value = 'landing';
-          // Hide all itinerary sections when navigating to Home
-          document.querySelectorAll('[id^="itinerary-section-"]').forEach(section => {
-            section.classList.add('hidden');
-          });
+          // Close modal if open
+          modal.style.display = 'none';
+          modalContentBody.innerHTML = '';
         } else {
           landingPage.classList.remove('active');
           mainContent.classList.remove('hidden');
           document.getElementById(`${tab}-content`).classList.add('active');
           navDropdown.value = tab;
-          // Hide all itinerary sections when navigating away from Home
-          document.querySelectorAll('[id^="itinerary-section-"]').forEach(section => {
-            section.classList.add('hidden');
-          });
+          // Close modal if open
+          modal.style.display = 'none';
+          modalContentBody.innerHTML = '';
         }
       }
 
@@ -736,29 +785,52 @@
         }
       });
 
-      // Itinerary Tile Navigation
+      // Itinerary Tile Navigation (Modal)
       const itineraryTiles = document.querySelectorAll('.itinerary-tile');
       itineraryTiles.forEach(tile => {
         tile.addEventListener('click', () => {
           const targetId = tile.getAttribute('data-target');
           const targetSection = document.getElementById(targetId);
           if (targetSection) {
-            // Hide all itinerary sections
-            document.querySelectorAll('[id^="itinerary-section-"]').forEach(section => {
-              section.classList.add('hidden');
+            // Clone the section content to display in the modal
+            const contentClone = targetSection.cloneNode(true);
+            contentClone.classList.remove('hidden');
+            modalContentBody.innerHTML = '';
+            modalContentBody.appendChild(contentClone);
+            modal.style.display = 'block';
+
+            // Re-attach event listeners to cloned panel buttons
+            const clonedPanelButtons = contentClone.querySelectorAll('[id$="-panel-btn-greve"], [id$="-panel-btn-panzano"], [id$="-panel-btn-castellina"], [id$="-panel-btn-montefioralle"]');
+            clonedPanelButtons.forEach(button => {
+              button.addEventListener('click', () => {
+                const panelId = button.id.replace('-btn', '');
+                const panel = contentClone.querySelector(`#${panelId}`);
+                panel.classList.toggle('active');
+              });
             });
-            // Show the selected section
-            targetSection.classList.remove('hidden');
-            targetSection.scrollIntoView({ behavior: 'smooth' });
           }
         });
       });
 
-      // Expanding Panels
-      const panelButtons = document.querySelectorAll('[id$="-panel-btn"], [id$="-panel-btn-greve"], [id$="-panel-btn-panzano"], [id$="-panel-btn-castellina"], [id$="-panel-btn-montefioralle"]');
+      // Modal Close
+      modalClose.addEventListener('click', () => {
+        modal.style.display = 'none';
+        modalContentBody.innerHTML = '';
+      });
+
+      // Close modal on backdrop click
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.style.display = 'none';
+          modalContentBody.innerHTML = '';
+        }
+      });
+
+      // Expanding Panels (for General Info)
+      const panelButtons = document.querySelectorAll('[id$="-panel-btn"]:not([id$="-panel-btn-greve"]):not([id$="-panel-btn-panzano"]):not([id$="-panel-btn-castellina"]):not([id$="-panel-btn-montefioralle"])');
       panelButtons.forEach(button => {
         button.addEventListener('click', () => {
-          const panelId = button.id.replace('-btn', '').replace('-greve', '').replace('-panzano', '').replace('-castellina', '').replace('-montefioralle', '');
+          const panelId = button.id.replace('-btn', '');
           const panel = document.getElementById(panelId);
           panel.classList.toggle('active');
         });
