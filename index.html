@@ -141,15 +141,39 @@
       font-weight: 500;
     }
     .itinerary-tile {
-      background-color: white;
-      border-radius: 0.375rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      border: 1px solid #e2e8f0;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
     .itinerary-tile:hover {
-      transform: scale(1.02);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+    .itinerary-tile img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+    }
+    .itinerary-tile-content {
+      flex: 1;
+    }
+    .itinerary-tile-content h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 0.25rem;
+    }
+    .itinerary-tile-content p {
+      font-size: 0.875rem;
+      color: #4b5563;
     }
     /* Modal Styles */
     #itinerary-modal {
@@ -301,8 +325,11 @@
         tile.className = 'itinerary-tile';
         tile.setAttribute('data-target', `itinerary-section-${itinerary.id}`);
         tile.innerHTML = `
-          <h3 class="text-xl font-semibold text-gray-800">${itinerary.title}</h3>
-          <p class="text-gray-600">${itinerary.description}</p>
+          <img src="https://via.placeholder.com/60?text=${encodeURIComponent(itinerary.title)}" alt="${itinerary.title} icon">
+          <div class="itinerary-tile-content">
+            <h3>${itinerary.title}</h3>
+            <p>${itinerary.description}</p>
+          </div>
         `;
         itineraryGrid.appendChild(tile);
       });
