@@ -100,8 +100,8 @@
       justify-content: space-between;
       align-items: center;
     }
-    #landing-page.active ~ .nav-bar {
-      display: none;
+    #landing-page.active {
+      padding-top: 48px; /* Adjust for nav-bar height to prevent overlap */
     }
     .nav-bar button {
       background-color: #3b82f6;
@@ -188,33 +188,13 @@
     #modal-close:hover {
       background-color: #dc2626;
     }
-    /* Ensure Landing Page content sits below the Navigation Bar */
-    #landing-page {
-      padding-top: 54px; /* Height of the nav-bar */
-    }
-    /* Game Styles */
-    #game-canvas {
-      border: 2px solid #4a5568;
-      border-radius: 0.5rem;
-      background-color: #f7fafc;
-    }
-    .game-button {
-      background-color: #3b82f6;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 0.375rem;
-      margin: 0.25rem;
-      font-size: 0.875rem;
-      font-weight: 500;
+    /* Weather Iframe Styles */
+    #weather-iframe {
+      width: 100%;
+      height: 600px; /* Adjust height as needed */
       border: none;
-      cursor: pointer;
-    }
-    .game-button:hover {
-      background-color: #2563eb;
-    }
-    .game-button:disabled {
-      background-color: #a0aec0;
-      cursor: not-allowed;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
@@ -225,7 +205,7 @@
     <select id="nav-dropdown">
       <option value="landing">Home</option>
       <option value="itineraries">Itineraries</option>
-      <option value="page1">Gelato Game</option>
+      <option value="weather">Weather</option>
       <option value="page2">Page 2</option>
       <option value="page3">Page 3</option>
     </select>
@@ -672,29 +652,14 @@
       </header>
     </div>
 
-    <!-- Gelato Game Tab (formerly Page 1) -->
-    <div id="page1-content" class="tab-content">
+    <!-- Weather Tab (Replaced Gelato Game) -->
+    <div id="weather-content" class="tab-content">
       <header class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800">Gelato Shop Dash</h1>
-        <p class="text-gray-600 mt-2">Serve gelato orders before time runs out!</p>
+        <h1 class="text-3xl font-bold text-gray-800">Weather</h1>
+        <p class="text-gray-600 mt-2">Check the weather forecast for Italy</p>
       </header>
       <div class="bg-white p-6 rounded-lg shadow-md">
-        <div class="flex flex-col items-center">
-          <canvas id="game-canvas" width="300" height="200"></canvas>
-          <div class="mt-4 flex flex-wrap justify-center">
-            <button id="flavor-chocolate" class="game-button">Chocolate</button>
-            <button id="flavor-vanilla" class="game-button">Vanilla</button>
-            <button id="flavor-strawberry" class="game-button">Strawberry</button>
-            <button id="topping-sprinkles" class="game-button">Sprinkles</button>
-            <button id="topping-nuts" class="game-button">Nuts</button>
-            <button id="topping-fruit" class="game-button">Fruit</button>
-            <button id="serve-button" class="game-button mt-2">Serve</button>
-            <button id="start-button" class="game-button mt-2">Start Game</button>
-          </div>
-          <p id="score-display" class="mt-4 text-lg font-semibold text-gray-800">Score: 0</p>
-          <p id="timer-display" class="mt-2 text-lg font-semibold text-gray-800">Time: 60s</p>
-          <p id="game-message" class="mt-2 text-lg text-gray-600"></p>
-        </div>
+        <iframe id="weather-iframe" src="https://jumcba.github.io/Italy-Weather/" title="Italy Weather Forecast"></iframe>
       </div>
     </div>
 
@@ -760,8 +725,6 @@
           // Close modal if open
           modal.style.display = 'none';
           modalContentBody.innerHTML = '';
-          // Reset game state when leaving Gelato Game
-          resetGame();
         } else {
           landingPage.classList.remove('active');
           mainContent.classList.remove('hidden');
@@ -770,10 +733,6 @@
           // Close modal if open
           modal.style.display = 'none';
           modalContentBody.innerHTML = '';
-          // Reset game state if navigating away from Gelato Game
-          if (tab !== 'page1') {
-            resetGame();
-          }
         }
       }
 
@@ -835,199 +794,6 @@
           modalContentBody.innerHTML = '';
         }
       });
-
-      // Gelato Game Logic
-      const canvas = document.getElementById('game-canvas');
-      const ctx = canvas.getContext('2d');
-      const startButton = document.getElementById('start-button');
-      const serveButton = document.getElementById('serve-button');
-      const flavorButtons = {
-        chocolate: document.getElementById('flavor-chocolate'),
-        vanilla: document.getElementById('flavor-vanilla'),
-        strawberry: document.getElementById('flavor-strawberry')
-      };
-      const toppingButtons = {
-        sprinkles: document.getElementById('topping-sprinkles'),
-        nuts: document.getElementById('topping-nuts'),
-        fruit: document.getElementById('topping-fruit')
-      };
-      const scoreDisplay = document.getElementById('score-display');
-      const timerDisplay = document.getElementById('timer-display');
-      const gameMessage = document.getElementById('game-message');
-
-      let gameState = {
-        score: 0,
-        timeLeft: 60,
-        gameRunning: false,
-        currentOrder: null,
-        selectedFlavor: null,
-        selectedTopping: null,
-        intervalId: null
-      };
-
-      const flavors = ['Chocolate', 'Vanilla', 'Strawberry'];
-      const toppings = ['Sprinkles', 'Nuts', 'Fruit'];
-      const customers = ['👶', '👧', '👦', '👩', '👨'];
-
-      function generateOrder() {
-        const flavor = flavors[Math.floor(Math.random() * flavors.length)];
-        const topping = toppings[Math.floor(Math.random() * toppings.length)];
-        const customer = customers[Math.floor(Math.random() * customers.length)];
-        return { flavor, topping, customer };
-      }
-
-      function drawGame() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Draw customer
-        if (gameState.currentOrder) {
-          ctx.font = '24px Arial';
-          ctx.fillStyle = '#4a5568';
-          ctx.textAlign = 'center';
-          ctx.fillText(gameState.currentOrder.customer, 150, 50);
-
-          // Draw speech bubble
-          ctx.beginPath();
-          ctx.fillStyle = '#fff';
-          ctx.strokeStyle = '#4a5568';
-          ctx.lineWidth = 2;
-          ctx.roundRect(100, 60, 100, 40, 10);
-          ctx.fill();
-          ctx.stroke();
-
-          // Draw order text
-          ctx.font = '14px Arial';
-          ctx.fillStyle = '#4a5568';
-          ctx.fillText(`${gameState.currentOrder.flavor}`, 150, 80);
-          ctx.fillText(`with ${gameState.currentOrder.topping}`, 150, 95);
-        }
-
-        // Draw selected gelato
-        if (gameState.selectedFlavor) {
-          ctx.beginPath();
-          ctx.fillStyle = getFlavorColor(gameState.selectedFlavor);
-          ctx.arc(150, 150, 20, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        if (gameState.selectedTopping) {
-          ctx.font = '12px Arial';
-          ctx.fillStyle = '#000';
-          ctx.fillText(gameState.selectedTopping, 150, 180);
-        }
-      }
-
-      function getFlavorColor(flavor) {
-        switch (flavor) {
-          case 'Chocolate': return '#8B4513';
-          case 'Vanilla': return '#F3E5AB';
-          case 'Strawberry': return '#FF6347';
-          default: return '#FFFFFF';
-        }
-      }
-
-      function startGame() {
-        gameState.gameRunning = true;
-        gameState.score = 0;
-        gameState.timeLeft = 60;
-        gameState.currentOrder = generateOrder();
-        gameState.selectedFlavor = null;
-        gameState.selectedTopping = null;
-        scoreDisplay.textContent = `Score: ${gameState.score}`;
-        timerDisplay.textContent = `Time: ${gameState.timeLeft}s`;
-        gameMessage.textContent = '';
-        startButton.disabled = true;
-        serveButton.disabled = false;
-        Object.values(flavorButtons).forEach(btn => btn.disabled = false);
-        Object.values(toppingButtons).forEach(btn => btn.disabled = false);
-
-        gameState.intervalId = setInterval(() => {
-          gameState.timeLeft--;
-          timerDisplay.textContent = `Time: ${gameState.timeLeft}s`;
-          if (gameState.timeLeft <= 0) {
-            endGame();
-          }
-        }, 1000);
-
-        drawGame();
-      }
-
-      function endGame() {
-        gameState.gameRunning = false;
-        clearInterval(gameState.intervalId);
-        gameMessage.textContent = `Game Over! Final Score: ${gameState.score}`;
-        startButton.disabled = false;
-        serveButton.disabled = true;
-        Object.values(flavorButtons).forEach(btn => btn.disabled = true);
-        Object.values(toppingButtons).forEach(btn => btn.disabled = true);
-        gameState.currentOrder = null;
-        drawGame();
-      }
-
-      function resetGame() {
-        if (gameState.gameRunning) {
-          clearInterval(gameState.intervalId);
-        }
-        gameState = {
-          score: 0,
-          timeLeft: 60,
-          gameRunning: false,
-          currentOrder: null,
-          selectedFlavor: null,
-          selectedTopping: null,
-          intervalId: null
-        };
-        scoreDisplay.textContent = `Score: ${gameState.score}`;
-        timerDisplay.textContent = `Time: ${gameState.timeLeft}s`;
-        gameMessage.textContent = '';
-        startButton.disabled = false;
-        serveButton.disabled = true;
-        Object.values(flavorButtons).forEach(btn => btn.disabled = true);
-        Object.values(toppingButtons).forEach(btn => btn.disabled = true);
-        drawGame();
-      }
-
-      function serveOrder() {
-        if (!gameState.selectedFlavor || !gameState.selectedTopping) {
-          gameMessage.textContent = 'Please select a flavor and topping!';
-          return;
-        }
-
-        if (gameState.selectedFlavor === gameState.currentOrder.flavor &&
-            gameState.selectedTopping === gameState.currentOrder.topping) {
-          gameState.score += 10;
-          gameMessage.textContent = 'Correct! +10 points';
-        } else {
-          gameState.score = Math.max(0, gameState.score - 5);
-          gameMessage.textContent = 'Incorrect! -5 points';
-        }
-
-        scoreDisplay.textContent = `Score: ${gameState.score}`;
-        gameState.currentOrder = generateOrder();
-        gameState.selectedFlavor = null;
-        gameState.selectedTopping = null;
-        drawGame();
-      }
-
-      // Event Listeners for Game Buttons
-      startButton.addEventListener('click', startGame);
-      serveButton.addEventListener('click', serveOrder);
-
-      Object.entries(flavorButtons).forEach(([flavor, button]) => {
-        button.addEventListener('click', () => {
-          gameState.selectedFlavor = flavor.charAt(0).toUpperCase() + flavor.slice(1);
-          drawGame();
-        });
-      });
-
-      Object.entries(toppingButtons).forEach(([topping, button]) => {
-        button.addEventListener('click', () => {
-          gameState.selectedTopping = topping.charAt(0).toUpperCase() + topping.slice(1);
-          drawGame();
-        });
-      });
-
-      // Initial draw
-      drawGame();
 
       console.log('App loaded successfully');
     });
