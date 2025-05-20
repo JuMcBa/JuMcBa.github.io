@@ -139,41 +139,46 @@
       padding: 0.5rem;
       font-size: 1rem;
       font-weight: 500;
+      opacity: 0; /* Start with 0 opacity */
+      transition: opacity 0.5s ease-in-out; /* Fade in/out transition */
+    }
+    #bottom-bar.visible {
+      opacity: 1; /* Fully visible when the class is added */
     }
     .itinerary-tile {
-      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-      border: 1px solid #e2e8f0;
-      border-radius: 0.75rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      padding: 1.5rem;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%); /* Subtle gradient background */
+      border-radius: 1rem; /* Softer rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Deeper shadow for depth */
+      padding: 1.5rem; /* More padding for a spacious look */
       cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover transitions */
+      position: relative; /* For positioning the icon */
+      overflow: hidden; /* Ensure pseudo-elements don't overflow */
+      display: flex; /* Use flexbox to align icon and text */
+      align-items: center; /* Vertically center content */
     }
     .itinerary-tile:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      transform: translateY(-5px); /* Slight lift on hover */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
     }
-    .itinerary-tile img {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 0.5rem;
+    .itinerary-tile .icon {
+      font-size: 2rem; /* Larger icon size */
+      margin-right: 1rem; /* Space between icon and text */
+      opacity: 0.8; /* Subtle opacity for balance */
     }
-    .itinerary-tile-content {
-      flex: 1;
+    .itinerary-tile .text-content {
+      flex: 1; /* Allow text content to take remaining space */
     }
-    .itinerary-tile-content h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #1f2937;
-      margin-bottom: 0.25rem;
+    .itinerary-tile h3 {
+      font-size: 1.25rem; /* Slightly larger for emphasis */
+      font-weight: 600; /* Medium-bold for clarity */
+      color: #2d3748; /* Darker gray for better contrast */
+      margin-bottom: 0.5rem;
     }
-    .itinerary-tile-content p {
-      font-size: 0.875rem;
-      color: #4b5563;
+    .itinerary-tile p {
+      font-size: 0.875rem; /* Smaller for description */
+      color: #4a5568; /* Slightly lighter gray for hierarchy */
+      line-height: 1.4; /* Better readability */
     }
     /* Modal Styles */
     #itinerary-modal {
@@ -261,10 +266,6 @@
 
     <!-- Itinerary Grid (Dynamically Populated) -->
     <div class="max-w-4xl mx-auto p-4">
-      <header class="text-center mb-8">
-        <h2 class="text-3xl font-bold text-gray-800">Choose an Itinerary</h2>
-        <p class="text-gray-600 mt-2">Explore Chianti’s treasures</p>
-      </header>
       <div id="itinerary-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
         <!-- Itinerary tiles will be inserted here dynamically -->
       </div>
@@ -304,7 +305,7 @@
   </div>
 
   <!-- Bottom Bar -->
-  <div id="bottom-bar" class="hidden">Chianti 2025</div>
+  <div id="bottom-bar">Chianti 2025</div>
 
   <!-- Load Itineraries Data with defer to ensure it loads before the main script -->
   <script defer src="itineraries.js"></script>
@@ -318,6 +319,16 @@
         return;
       }
 
+      // Define icons for each itinerary
+      const itineraryIcons = {
+        'greve': '🍇', // Grapes for Chianti’s wine region
+        'panzano': '🍷', // Wine glass for the wine-focused loop
+        'florence': '🏛️', // Classical building for Florence’s Renaissance architecture
+        'montefioralle': '🍾', // Champagne bottle for the wine tasting focus
+        'civita': '🏰', // Castle for the medieval "Dying City"
+        'umbria': '⛪' // Church for the Gothic architecture of Orvieto and Todi
+      };
+
       // Populate Itinerary Grid
       const itineraryGrid = document.getElementById('itinerary-grid');
       itineraries.forEach(itinerary => {
@@ -325,8 +336,8 @@
         tile.className = 'itinerary-tile';
         tile.setAttribute('data-target', `itinerary-section-${itinerary.id}`);
         tile.innerHTML = `
-          <img src="https://via.placeholder.com/60?text=${encodeURIComponent(itinerary.title)}" alt="${itinerary.title} icon">
-          <div class="itinerary-tile-content">
+          <span class="icon">${itineraryIcons[itinerary.id]}</span>
+          <div class="text-content">
             <h3>${itinerary.title}</h3>
             <p>${itinerary.description}</p>
           </div>
@@ -387,13 +398,13 @@
         navigateTo('landing');
       });
 
-      // Bottom Bar Visibility
+      // Bottom Bar Visibility with Fade Effect
       const bottomBar = document.getElementById('bottom-bar');
       window.addEventListener('scroll', () => {
         if (window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight) {
-          bottomBar.classList.remove('hidden');
+          bottomBar.classList.add('visible');
         } else {
-          bottomBar.classList.add('hidden');
+          bottomBar.classList.remove('visible');
         }
       });
 
