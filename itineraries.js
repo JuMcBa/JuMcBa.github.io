@@ -208,7 +208,7 @@ const itineraries = [
     tips: [
       '<strong>Roads:</strong> A1 is efficient with tolls; SR69 is straightforward but busier near Florence. Watch for ZTL signs and cameras in the city.',
       '<strong>Costs (per person):</strong> Parking: ~€8–12 (Parterre, 6–7 hours). Lunch: €10–20 (Trattoria Mario) or €6–8 (All’Antico Vinaio). Dinner: €15–25 (Osteria Vini e Vecchi Sapori) or €8–12 (I’ Girone De’ Ghiotti). Sights: €12 (Accademia), €5 (Baptistery), free for Duomo/Ponte Vecchio. Fuel: ~€10–15 for 90 km (at ~€1.70/L). Tolls: ~€6–8 round trip.',
-      '<strong>Reservations:</strong> Book Accademia tickets (accademia.org) to skip lines. Reserve dinner at Osteria Vini e Vecchi Sapori (+39 0577 293045). Trattoria Mario doesn’t take reservations; arrive early for lunch.',
+      '<strong>Reservations:</strong> Book Accademia tickets (accademia.org) to skip lines. Reserve dinner at Osteria Vini e Vecchi Sapori (+39 055 293045). Trattoria Mario doesn’t take reservations; arrive early for lunch.',
       '<strong>What to Bring:</strong> Euros for parking/meals/sights, comfortable shoes for walking, a camera for Florence’s landmarks, and a light jacket (May weather: ~20–25°C).',
       '<strong>Parking:</strong> Parterre or Garage La Stazione are outside the ZTL; arrive early to secure spots. Avoid driving into Florence’s center to prevent fines.',
       '<strong>Time Management:</strong> The itinerary is comfortably paced with ~50 minutes buffer. If delayed, skip Santa Croce/Oltrarno (45m) or shorten dinner to 1 hour. Florence is walkable; stick to the suggested order to minimize backtracking.',
@@ -383,5 +383,64 @@ const itineraries = [
       '<strong>Alternative Recommendations:</strong> Activity: If you skip the Museo Civico, visit the Santa Maria della Scala (€9, ~1 hour) for medieval hospital exhibits and frescoes. Restaurant: Near San Domenico, Osteria Nonna Gina (Pian dei Mantellini 2, €12–20) offers hearty Sienese dishes like pici all’aglione. Quick Stop: If ahead of schedule, pause at Fortezza Medicea (free, ~15 minutes) for city views before leaving.',
       '<strong>Critical Notes:</strong> Siena’s Duomo and Piazza del Campo are unmissable; the Duomo ticket is worth it for the floor and library. La Taverna di Cecco and Antica Osteria da Divo are top-rated (Google: 4.5+ stars) for authenticity and ambiance. ZTL and parking rules are strict; use designated lots and check signs. Verify hours: Duomo (10:00 AM–6:00 PM), Museo Civico (10:00 AM–6:00 PM), La Taverna di Cecco (12:00 PM–3:00 PM, 7:00 PM–10:00 PM), Antica Osteria da Divo (12:00 PM–2:30 PM, 7:00 PM–10:00 PM). The establishment narrative on Siena’s medieval allure is reliable, but confirm reservations and ticket availability directly.'
     ]
-  }
+  },{
+  id: 'umbria',
+  title: 'Umbrian Hilltop Towns',
+  description: 'Explore the medieval charm of Orvieto and Todi',
+  overview: {
+    start: 'Il Cortile Pratolino, near Cavriglia, Italy (9:30 AM)',
+    destinations: 'Orvieto and Todi (Umbrian towns known for medieval architecture and scenic beauty)',
+    end: 'Return to Il Cortile Pratolino (by 4:30 PM)',
+    totalDrivingDistance: '~230 km (round trip)',
+    totalDrivingTime: '~3 hours 20 minutes (excluding stops)',
+    totalTimeForStops: '~3 hours 40 minutes (including sightseeing and lunch)'
+  },
+  detailed: [
+    {
+      time: '9:30 AM – Depart Il Cortile Pratolino for Orvieto',
+      details: '<strong>Drive:</strong> ~110 km, ~1 hour 40 minutes via SR69 south to the A1, exiting at Orvieto. This route is the fastest, passing through Tuscan and Umbrian countryside with views of hills and vineyards.<br><strong>Notes:</strong> A1 toll ~€7–9 one way. Park at Parcheggio Campo della Fiera (€1.50/hour, ~5-minute funicular ride to the historic center, €1.30/ride) or Parcheggio Via Roma (€1.50/hour, 10-minute walk). Avoid ZTL (restricted traffic zone) fines. Arrive by 11:10 AM to secure parking.'
+    },
+    {
+      time: '11:10 AM – Explore Orvieto (2 hours)',
+      details: '<strong>Activities:</strong> Duomo di Orvieto (45 minutes): Visit the 13th-century Cattedrale di Santa Maria Assunta (€5, includes museum, ~30 minutes). Admire the Gothic facade, Luca Signorelli’s frescoes in the San Brizio Chapel, and intricate mosaics. The Duomo is a UNESCO highlight, rivaling Siena’s cathedral. Piazza del Duomo and Via del Duomo (45 minutes): Stroll the square and nearby streets, browsing ceramic shops or tasting Orvieto Classico wine at Enoteca Tozzi (Piazza del Duomo 10, €3–5/glass, no reservation needed). Visit the Pozzo di San Patrizio (€5, ~15 minutes), a 16th-century well with a double-helix staircase, if time allows. Quick Views (30 minutes): Walk to Torre del Moro (exterior, €2.80 to climb, skip for time) or the city walls near Via della Cava for panoramic views of Umbria’s green valleys.<br><strong>Why Visit:</strong> Orvieto’s hilltop setting, stunning Duomo, and Etruscan heritage make it a must-see Umbrian gem, compact enough for a short visit.<br><strong>Notes:</strong> Buy Duomo tickets on-site or via duomodiorvieto.it. May crowds are manageable; wear comfortable shoes for cobblestones. Prioritize the Duomo and a quick stroll to stay on schedule.'
+    },
+    {
+      time: '1:10 PM – Lunch in Orvieto (1 hour)',
+      details: '<strong>Restaurant Recommendation:</strong> Trattoria La Palomba (Via Cipriano Manente 16, +39 0763 343395, reservations advised). This family-run trattoria serves Umbrian classics like strangozzi al tartufo (truffle pasta) or pollo alla cacciatora (€12–20/person). Reviews (Google: 4.5+ stars) praise the fresh ingredients and cozy ambiance. Arrive by 1:10 PM to secure a table.<br><strong>Alternative:</strong> For a quicker meal, grab a porchetta sandwich at Bottega Vera (Corso Cavour 104, €5–8), a deli with local specialties, saving ~20 minutes.<br><strong>Notes:</strong> La Palomba accepts cards; book ahead for faster service. Bottega Vera is cash-preferred and ideal for a takeaway lunch.'
+    },
+    {
+      time: '2:10 PM – Drive to Todi (30 minutes)',
+      details: '<strong>Drive:</strong> ~40 km, ~30 minutes via SS448 and SR3bis to Todi. This scenic route follows Umbria’s rolling hills, with views of olive groves and medieval villages.<br><strong>Notes:</strong> Park at Parcheggio Porta Orvietana (free or €1/hour, ~5-minute walk to center) or Piazza Jacopone (€1/hour). Avoid ZTL zones.'
+    },
+    {
+      time: '2:40 PM – Explore Todi (40 minutes)',
+      details: '<strong>Activities:</strong> Piazza del Popolo (20 minutes): Visit Todi’s main square, one of Italy’s most picturesque, with the 13th-century Palazzo del Capitano and Palazzo del Popolo (exterior, free). Admire the Duomo di Todi (Cattedrale della Santissima Annunziata, free, ~10 minutes) for its Romanesque-Gothic facade and rose window. Quick Stroll (20 minutes): Walk Via San Fortunato to the Chiesa di San Fortunato (free, ~10 minutes), a Gothic church with a serene crypt. Browse nearby shops for Umbrian olive oil or ceramics. If time allows, enjoy views from the Rocca (park area, free, ~5 minutes) overlooking the Tiber Valley.<br><strong>Why Visit:</strong> Todi’s compact medieval center and tranquil vibe offer a quieter Umbrian experience, complementing Orvieto’s grandeur.<br><strong>Notes:</strong> Todi is small; 40 minutes covers key sights. Skip San Fortunato if time is tight. The Duomo is free and uncrowded.'
+    },
+    {
+      time: '3:20 PM – Drive Back to Il Cortile Pratolino (1 hour 10 minutes)',
+      details: '<strong>Drive:</strong> ~80 km, ~1 hour 10 minutes via SR3bis to the A1 north, exiting at Valdichiana, then SR69 to Cavriglia. The return route is slightly shorter, passing through Umbrian and Tuscan countryside.<br><strong>Notes:</strong> A1 toll ~€7–9. Allow extra time for potential traffic near Orvieto. Refuel in Montevarchi (~12 km from the villa) if needed. Depart by 3:20 PM to ensure a 4:30 PM arrival.'
+    },
+    {
+      time: '4:30 PM – Arrive Back at Il Cortile Pratolino',
+      details: '<strong>Activity:</strong> Relax at the villa’s infinity pool or reflect on Umbria’s medieval charm over a glass of Chianti Classico.'
+    }
+  ],
+  timeBreakdown: [
+    'Driving: ~3h20m (1h40m to Orvieto, 30m to Todi, 1h10m return)',
+    'Stops: Orvieto exploration (2h), lunch (1h), Todi exploration (40m) = 3h40m',
+    'Buffer: ~5–10 minutes for parking or minor delays',
+    '<strong>Total:</strong> ~7 hours (9:30 AM – 4:30 PM)'
+  ],
+  tips: [
+    '<strong>Roads:</strong> A1 is efficient with tolls; SR3bis and SR448 are scenic but narrow. Watch for cyclists and ZTL signs in both towns.',
+    '<strong>Costs (per person):</strong> Parking: ~€5–8 (Campo della Fiera in Orvieto, Porta Orvietana in Todi). Funicular (Orvieto): €2.60 round trip. Lunch: €12–20 (La Palomba) or €5–8 (Bottega Vera). Sights: €5 (Duomo di Orvieto), €5 (Pozzo, optional), free for Todi’s Duomo/San Fortunato. Fuel: ~€20–25 for 230 km (at ~€1.70/L). Tolls: ~€14–18 round trip.',
+    '<strong>Reservations:</strong> Book lunch at Trattoria La Palomba (+39 0763 343395). Duomo tickets (duomodiorvieto.it) are optional but save time.',
+    '<strong>What to Bring:</strong> Euros for parking/meals/sights, comfortable shoes for Orvieto’s hills and Todi’s cobblestones, a camera for the Duomo and valley views, and a light jacket (May weather: ~20–25°C).',
+    '<strong>Parking:</strong> Use Campo della Fiera (Orvieto) and Porta Orvietana (Todi) to avoid ZTL fines. Take the funicular in Orvieto for convenience. Arrive early for spots.',
+    '<strong>Time Management:</strong> The itinerary is tight to meet the 4:30 PM return. If delayed, shorten Todi to 30 minutes (skip San Fortunato) or lunch to 45 minutes. Both towns are walkable (~2 km total).',
+    '<strong>Alternative Recommendations:</strong> Town: Swap Todi for Spello (~50 km from Orvieto, 45-minute drive), a charming Umbrian village with flower-lined streets, if you prefer a quieter stop (requires cutting Orvieto to 1h45m). Restaurant: In Orvieto, Ristorante I Sette Consoli (Piazza Sant’Angelo 1, €20–30) offers upscale Umbrian dishes for a special lunch, if budget allows. Activity: Add a quick stop at Orvieto’s Underground Caves (€7, 30 minutes) for Etruscan history, if you skip Pozzo di San Patrizio.',
+    '<strong>Critical Notes:</strong> Orvieto’s Duomo is a must-see, with frescoes rivaling the Sistine Chapel; the €5 ticket is worth it. Trattoria La Palomba is top-rated (Google: 4.5+ stars) for Umbrian cuisine, comparable to Tuscany’s rustic fare. Todi’s Piazza del Popolo is serene and photogenic, ideal for a brief visit. Verify hours: Duomo di Orvieto (9:30 AM–6:00 PM), La Palomba (12:30 PM–2:30 PM), Todi Duomo (8:00 AM–5:00 PM). The establishment narrative on Umbria’s medieval towns is reliable, but confirm reservations and parking directly.'
+  ]
+}
 ];
+
